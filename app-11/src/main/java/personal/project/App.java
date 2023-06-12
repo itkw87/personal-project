@@ -1,6 +1,6 @@
 package personal.project;
 
-import personal.project.handler.StudentHandler;
+import personal.project.handler.MemberHandler;
 import personal.util.Prompt;
 
 public class App {
@@ -17,15 +17,15 @@ public class App {
       } else if (menuNo.equals("menu")) {
         printMenu();
       } else if (menuNo.equals("1")) {
-        StudentHandler.inputMember();
+        MemberHandler.inputMember();
       } else if (menuNo.equals("2")) {
-        StudentHandler.printMembers();
+        MemberHandler.printMembers();
       } else if (menuNo.equals("3")) {
-        StudentHandler.viewMember();
+        MemberHandler.viewMember();
       } else if (menuNo.equals("4")) {
-        StudentHandler.updateMember();
+        MemberHandler.updateMember();
       } else if (menuNo.equals("5")) {
-        StudentHandler.deleteMember();
+        MemberHandler.deleteMember();
       } else {
         System.out.println(menuNo);
       }

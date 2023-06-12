@@ -1,6 +1,6 @@
 package personal.project;
 
-import personal.project.handler.StudentHandler;
+import personal.project.handler.MemberHandler;
 import personal.util.Prompt;
 
 public class App {
@@ -17,15 +17,15 @@ public class App {
       } else if (menuNo.equals("menu")) {
         printMenu();
       } else if (menuNo.equals("1")) {
-        StudentHandler.inputMember();
+        MemberHandler.inputMember();
       } else if (menuNo.equals("2")) {
-        StudentHandler.printMembers();
+        MemberHandler.printMembers();
       } else if (menuNo.equals("3")) {
-        StudentHandler.viewMember();
+        MemberHandler.viewMember();
       } else if (menuNo.equals("4")) {
-        StudentHandler.updateMember();
+        MemberHandler.updateMember();
       } else if (menuNo.equals("5")) {
-        StudentHandler.deleteMember();
+        MemberHandler.deleteMember();
       } else {
         System.out.println(menuNo);
       }
@@ -35,11 +35,11 @@ public class App {
   }
 
   static void printMenu() {
-    System.out.println("1. 학생등록");
-    System.out.println("2. 학생목록");
-    System.out.println("3. 학생조회");
-    System.out.println("4. 학생변경");
-    System.out.println("5. 학생삭제");
+    System.out.println("1. 회원등록");
+    System.out.println("2. 회원목록");
+    System.out.println("3. 회원조회");
+    System.out.println("4. 회원변경");
+    System.out.println("5. 회원삭제");
     System.out.println("6. 종료");
   }
 
