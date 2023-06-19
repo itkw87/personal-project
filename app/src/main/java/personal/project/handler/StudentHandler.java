@@ -1,48 +1,71 @@
 package personal.project.handler;
 
 import personal.project.vo.Student;
+import personal.util.List;
 import personal.util.Prompt;
 
-public class StudentHandler {
+public class StudentHandler implements Handler {
 
-  private static final int MAX_SIZE = 100;
-  // variable initializer(변수초기화 문장) => static 블록으로 이동
-  // 단 final 변수는 static 블록에서 값을 할당하지 않고 그냥 상수로 취급한다.
-
+  private List list;
   private Prompt prompt;
-
-  private Student[] students = new Student[MAX_SIZE];
-  // variable initializer(변수초기화 문장) => 생성자로 이동
-
-  private int length;
+  private String title;
 
   // 생성자: 인스턴스를 사용할 수 있도록 유효한 값으로 초기화시키는 일을 한다.
   // => 필요한 값을 외부에서 받고 싶으면 파라미터를 선언하라.
-  public StudentHandler(Prompt prompt) {
+  public StudentHandler(Prompt prompt, String title, List list) {
     this.prompt = prompt;
+    this.title = title;
+    this.list = list;
+  }
+
+  public void execute() {
+    printMenu();
+
+    while (true) {
+      String menuNo = prompt.inputString("%s> ", this.title);
+      if (menuNo.equals("0")) {
+        return;
+      } else if (menuNo.equals("menu")) {
+        printMenu();
+      } else if (menuNo.equals("1")) {
+        this.inputStudent();
+      } else if (menuNo.equals("2")) {
+        this.printStudents();
+      } else if (menuNo.equals("3")) {
+        this.viewStudent();
+      } else if (menuNo.equals("4")) {
+        this.updateStudent();
+      } else if (menuNo.equals("5")) {
+        this.deleteStudent();
+      } else {
+        System.out.println("메뉴 번호가 옳지 않습니다!");
+      }
+    }
+  }
+
+  private static void printMenu() {
+    System.out.println("1. 등록");
+    System.out.println("2. 목록");
+    System.out.println("3. 조회");
+    System.out.println("4. 변경");
+    System.out.println("5. 삭제");
+    System.out.println("0. 메인");
   }
 
 
   public void inputStudent() {
-    if (!available()) {
-      System.out.println("더이상 입력할 수 없습니다!");
-      return;
-    }
+    Student s = new Student();
+    s.setBirth(this.prompt.inputInt("생년월일? "));
+    s.setName(this.prompt.inputString("이름? "));
+    s.setGrade(this.prompt.inputInt("학년? "));
+    s.setKoreanScore(this.prompt.inputInt("국어점수? "));
+    s.setEnglishScore(this.prompt.inputInt("영어점수? "));
+    s.setMathScore(this.prompt.inputInt("수학점수? "));
+    s.setScoreAvg((float) (s.getKoreanScore() + s.getEnglishScore() + s.getMathScore()) / 3);
+    s.setGender(inputGender((char) 0));
+    s.setStatus(inputStatus(false, "insert"));
 
-    Student student = new Student();
-    student.setBirth(this.prompt.inputInt("생년월일? "));
-    student.setName(this.prompt.inputString("이름? "));
-    student.setGrade(this.prompt.inputInt("학년? "));
-    student.setKoreanScore(this.prompt.inputInt("국어점수? "));
-    student.setEnglishScore(this.prompt.inputInt("영어점수? "));
-    student.setMathScore(this.prompt.inputInt("수학점수? "));
-    student.setScoreAvg(
-        (float) (student.getKoreanScore() + student.getEnglishScore() + student.getMathScore())
-            / 3);
-    student.setGender(inputGender((char) 0));
-    student.setStatus(inputStatus(false, "insert"));
-
-    this.students[this.length++] = student;
+    this.list.add(s);
   }
 
   public void printStudents() {
@@ -52,8 +75,8 @@ public class StudentHandler {
     System.out.println(
         "------------------------------------------------------------------------------------------");
 
-    for (int i = 0; i < this.length; i++) {
-      Student s = this.students[i];
+    for (int i = 0; i < this.list.size(); i++) {
+      Student s = (Student) this.list.get(i);
       System.out.printf(
           "  %d  |  %d  | %s |  %d  |   %d   |   %d   |   %d   |  %s  |  %s  |  %.1f\n", s.getNo(),
           s.getBirth(), s.getName(), s.getGrade(), s.getKoreanScore(), s.getEnglishScore(),
@@ -63,23 +86,22 @@ public class StudentHandler {
   }
 
   public void viewStudent() {
-    String memberNo = this.prompt.inputString("번호? ");
-    for (int i = 0; i < this.length; i++) {
-      Student s = this.students[i];
-      if (s.getNo() == Integer.parseInt(memberNo)) {
-        System.out.printf("생년월일: %d\n", s.getBirth());
-        System.out.printf("이름: %s\n", s.getName());
-        System.out.printf("학년: %d\n", s.getGrade());
-        System.out.printf("국어점수: %d\n", s.getKoreanScore());
-        System.out.printf("영어점수: %d\n", s.getEnglishScore());
-        System.out.printf("수학점수: %d\n", s.getMathScore());
-        System.out.printf("재학여부: %s\n", toBooleanString(s.getStatus()));
-        System.out.printf("성별: %s\n", toGenderString(s.getGender()));
-        System.out.printf("평균점수: %.1f\n", s.getScoreAvg());
-        return;
-      }
+    int studentNo = this.prompt.inputInt("번호? ");
+    Student s = this.findBy(studentNo);
+    if (s == null) {
+      System.out.println("해당 번호의 학생이 없습니다!");
+      return;
     }
-    System.out.println("해당 번호의 학생이 없습니다!");
+
+    System.out.printf("생년월일: %d\n", s.getBirth());
+    System.out.printf("이름: %s\n", s.getName());
+    System.out.printf("학년: %d\n", s.getGrade());
+    System.out.printf("국어점수: %d\n", s.getKoreanScore());
+    System.out.printf("영어점수: %d\n", s.getEnglishScore());
+    System.out.printf("수학점수: %d\n", s.getMathScore());
+    System.out.printf("재학여부: %s\n", toBooleanString(s.getStatus()));
+    System.out.printf("성별: %s\n", toGenderString(s.getGender()));
+    System.out.printf("평균점수: %.1f\n", s.getScoreAvg());
   }
 
   public static String toBooleanString(Boolean value) {
@@ -91,25 +113,23 @@ public class StudentHandler {
   }
 
   public void updateStudent() {
-    String memberNo = this.prompt.inputString("번호? ");
-    for (int i = 0; i < length; i++) {
-      Student studnet = students[i];
-      if (studnet.getNo() == Integer.parseInt(memberNo)) {
-        studnet.setBirth(this.prompt.inputInt("생년월일(%d)? ", studnet.getBirth()));
-        studnet.setName(this.prompt.inputString("이름(%s)? ", studnet.getName()));
-        studnet.setGrade(this.prompt.inputInt("학년(%d)? ", studnet.getGrade()));
-        studnet.setKoreanScore(this.prompt.inputInt("국어점수(%d)? ", studnet.getKoreanScore()));
-        studnet.setEnglishScore(this.prompt.inputInt("영어점수(%d)? ", studnet.getEnglishScore()));
-        studnet.setMathScore(this.prompt.inputInt("수학점수(%d)? ", studnet.getMathScore()));
-        studnet.setStatus(inputStatus(studnet.getStatus(), "update"));
-        studnet.setGender(inputGender(studnet.getGender()));
-        studnet.setScoreAvg(
-            (float) (studnet.getKoreanScore() + studnet.getEnglishScore() + studnet.getMathScore())
-                / 3);
-        return;
-      }
+    int studentNo = this.prompt.inputInt("번호? ");
+    Student s = this.findBy(studentNo);
+
+    if (s == null) {
+      System.out.println("해당 번호의 학생이 없습니다!");
+      return;
     }
-    System.out.println("해당 번호의 학생이 없습니다!");
+
+    s.setBirth(this.prompt.inputInt("생년월일(%d)? ", s.getBirth()));
+    s.setName(this.prompt.inputString("이름(%s)? ", s.getName()));
+    s.setGrade(this.prompt.inputInt("학년(%d)? ", s.getGrade()));
+    s.setKoreanScore(this.prompt.inputInt("국어점수(%d)? ", s.getKoreanScore()));
+    s.setEnglishScore(this.prompt.inputInt("영어점수(%d)? ", s.getEnglishScore()));
+    s.setMathScore(this.prompt.inputInt("수학점수(%d)? ", s.getMathScore()));
+    s.setStatus(inputStatus(s.getStatus(), "update"));
+    s.setGender(inputGender(s.getGender()));
+    s.setScoreAvg((float) (s.getKoreanScore() + s.getEnglishScore() + s.getMathScore()) / 3);
   }
 
   private boolean inputStatus(boolean value, String transaction) {
@@ -119,7 +139,6 @@ public class StudentHandler {
     } else {
       label = String.format("재학여부(%s)\n", toBooleanString(value));
     }
-
     while (true) {
       String menuNo = this.prompt.inputString(label + "  1. 재학\n" + "  2. 퇴학\n" + "> ");
 
@@ -141,7 +160,6 @@ public class StudentHandler {
     } else {
       label = String.format("성별(%s)?\n", toGenderString(gender));
     }
-
     while (true) {
       String menuNo = this.prompt.inputString(label + " 1. 남자\n" + " 2. 여자\n" + "> ");
 
@@ -157,32 +175,18 @@ public class StudentHandler {
   }
 
   public void deleteStudent() {
-    int memberNo = this.prompt.inputInt("번호? ");
-
-    int deletedIndex = indexOf(memberNo);
-    if (deletedIndex == -1) {
+    if (!this.list.remove(new Student(this.prompt.inputInt("번호? ")))) {
       System.out.println("해당 번호의 학생이 없습니다!");
-      return;
     }
-
-    for (int i = deletedIndex; i < length - 1; i++) {
-      students[i] = students[i + 1];
-    }
-
-    students[--length] = null;
   }
 
-  private int indexOf(int memberNo) {
-    for (int i = 0; i < this.length; i++) {
-      Student s = this.students[i];
-      if (s.getNo() == memberNo) {
-        return i;
+  private Student findBy(int no) {
+    for (int i = 0; i < this.list.size(); i++) {
+      Student s = (Student) this.list.get(i);
+      if (s.getNo() == no) {
+        return s;
       }
     }
-    return -1;
-  }
-
-  public boolean available() {
-    return this.length < MAX_SIZE;
+    return null;
   }
 }

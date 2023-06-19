@@ -2,7 +2,7 @@ package personal.project.vo;
 
 public class Student {
 
-  public static int userId = 1;
+  private static int userId = 1;
 
   public static final boolean ENROLLMENT = true;
   public static final boolean DROPOUT = false;

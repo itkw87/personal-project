@@ -1,7 +1,11 @@
 package personal.project;
 
+
 import personal.project.handler.BoardHandler;
+import personal.project.handler.Handler;
 import personal.project.handler.StudentHandler;
+import personal.util.ArrayList;
+import personal.util.LinkedList;
 import personal.util.Prompt;
 
 public class App {
@@ -11,10 +15,9 @@ public class App {
     // => 기본 생성자는 Scanner를 키보드와 연결한다.
     Prompt prompt = new Prompt();
 
-    StudentHandler studentHandler = new StudentHandler(prompt);
-    BoardHandler boardHandler = new BoardHandler(prompt);
-    BoardHandler freeBoardHandler = new BoardHandler(prompt);
-
+    Handler studentHandler = new StudentHandler(prompt, "학생", new ArrayList());
+    Handler boardHandler = new BoardHandler(prompt, "게시글", new LinkedList());
+    Handler readingHandler = new BoardHandler(prompt, "자유게시글", new LinkedList());
 
     printTitle();
 
@@ -22,42 +25,18 @@ public class App {
 
     while (true) {
       String menuNo = prompt.inputString("메인> ");
-      if (menuNo.equals("99")) {
+      if (menuNo.equals("0")) {
         break;
       } else if (menuNo.equals("menu")) {
         printMenu();
       } else if (menuNo.equals("1")) {
-        studentHandler.inputStudent();
+        studentHandler.execute();
       } else if (menuNo.equals("2")) {
-        studentHandler.printStudents();
+        boardHandler.execute();
       } else if (menuNo.equals("3")) {
-        studentHandler.viewStudent();
-      } else if (menuNo.equals("4")) {
-        studentHandler.updateStudent();
-      } else if (menuNo.equals("5")) {
-        studentHandler.deleteStudent();
-      } else if (menuNo.equals("6")) {
-        boardHandler.inputBoard();
-      } else if (menuNo.equals("7")) {
-        boardHandler.printBoards();
-      } else if (menuNo.equals("8")) {
-        boardHandler.printBoards();
-      } else if (menuNo.equals("9")) {
-        boardHandler.updateBoard();
-      } else if (menuNo.equals("10")) {
-        boardHandler.deleteBoard();
-      } else if (menuNo.equals("11")) {
-        freeBoardHandler.inputBoard();
-      } else if (menuNo.equals("12")) {
-        freeBoardHandler.printBoards();
-      } else if (menuNo.equals("13")) {
-        freeBoardHandler.viewBoard();
-      } else if (menuNo.equals("14")) {
-        freeBoardHandler.updateBoard();
-      } else if (menuNo.equals("15")) {
-        freeBoardHandler.deleteBoard();
+        readingHandler.execute();
       } else {
-        System.out.println("메뉴 번호가 옳지 않습니다.");
+        System.out.println("메뉴 번호가 옳지 않습니다!");
       }
     }
 
@@ -65,22 +44,11 @@ public class App {
   }
 
   static void printMenu() {
-    System.out.println("1. 학생등록");
-    System.out.println("2. 학생목록");
-    System.out.println("3. 학생조회");
-    System.out.println("4. 학생변경");
-    System.out.println("5. 학생삭제");
-    System.out.println("6. 게시글등록");
-    System.out.println("7. 게시글목록");
-    System.out.println("8. 게시글조회");
-    System.out.println("9. 게시글변경");
-    System.out.println("10. 게시글삭제");
-    System.out.println("11. 자유게시글 등록");
-    System.out.println("12. 자유게시글 목록");
-    System.out.println("13. 자유게시글 조회");
-    System.out.println("14. 자유게시글 변경");
-    System.out.println("15. 자유게시글 삭제");
-    System.out.println("99. 종료");
+    System.out.println("1. 학생");
+    System.out.println("2. 게시글");
+    System.out.println("3. 자유게시글");
+    System.out.println("0. 종료");
+
   }
 
   static void printTitle() {

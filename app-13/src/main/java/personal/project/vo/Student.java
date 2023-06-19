@@ -24,67 +24,6 @@ public class Student {
     this.no = userId++;
   }
 
-  // 같은 기능을 수행하는 생성자가 위에 있다.
-  // 다만 파라미터가 다를 뿐이다.
-  // => "생성자 오버로딩(overloading)"
-  public Student(int no) {
-    this.no = no;
-  }
-
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-
-    if (this.getClass() != obj.getClass()) {
-      return false;
-    }
-
-    Student s = (Student) obj;
-
-    if (this.getNo() != s.getNo()) {
-      return false;
-    }
-
-    // if (this.getBirth() != s.getBirth()) {
-    // return false;
-    // }
-    //
-    // if (this.getName() != null && !this.getName().equals(s.getName())) {
-    // return false;
-    // }
-    //
-    // if (this.getGrade() != s.getGrade()) {
-    // return false;
-    // }
-    //
-    // if (this.getKoreanScore() != s.getKoreanScore()) {
-    // return false;
-    // }
-    //
-    // if (this.getEnglishScore() != s.getEnglishScore()) {
-    // return false;
-    // }
-    //
-    // if (this.getMathScore() != s.getMathScore()) {
-    // return false;
-    // }
-    //
-    // if (this.getStatus() != s.getStatus()) {
-    // return false;
-    // }
-    //
-    // if (this.getGender() != s.getGender()) {
-    // return false;
-    // }
-    //
-    // if (this.getScoreAvg() != s.getScoreAvg()) {
-    // return false;
-    // }
-
-    return true;
-  }
-
   public int getNo() {
     return no;
   }
@@ -164,6 +103,5 @@ public class Student {
   public void setScoreAvg(float scoreAvg) {
     this.scoreAvg = scoreAvg;
   }
-
 
 }
