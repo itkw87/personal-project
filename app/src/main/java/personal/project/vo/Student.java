@@ -2,7 +2,7 @@ package personal.project.vo;
 
 import java.io.Serializable;
 
-public class Student implements Serializable, CsvObject {
+public class Student implements Serializable, CsvObject, AutoIncrement {
 
   private static final long serialVersionUID = 1L;
 
@@ -24,9 +24,7 @@ public class Student implements Serializable, CsvObject {
   private char gender;
   private float scoreAvg;
 
-  public Student() {
-    this.no = userId++;
-  }
+  public Student() {}
 
   public static Student fromCsv(String csv) {
     String[] values = csv.split(",");
@@ -63,6 +61,13 @@ public class Student implements Serializable, CsvObject {
   // => "생성자 오버로딩(overloading)"
   public Student(int no) {
     this.no = no;
+  }
+
+  @Override
+  public void updateKey() {
+    if (Student.userId <= this.no) {
+      Student.userId = this.no + 1;
+    }
   }
 
   public boolean equals(Object obj) {

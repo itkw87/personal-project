@@ -6,11 +6,13 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import personal.project.handler.BoardAddListener;
 import personal.project.handler.BoardDeleteListener;
 import personal.project.handler.BoardDetailListener;
@@ -24,8 +26,8 @@ import personal.project.handler.StudentDeleteListener;
 import personal.project.handler.StudentDetailListener;
 import personal.project.handler.StudentListListener;
 import personal.project.handler.StudentUpdateListener;
+import personal.project.vo.AutoIncrement;
 import personal.project.vo.Board;
-import personal.project.vo.CsvObject;
 import personal.project.vo.Student;
 import personal.util.BreadcrumbPrompt;
 import personal.util.Menu;
@@ -64,17 +66,17 @@ public class App {
   }
 
   private void loadData() {
-    loadCsv("student.csv", studentList, Student.class);
-    loadCsv("board.csv", boardList, Board.class);
-    loadCsv("freeBoard.csv", freeBoardList, Board.class);
+    loadJson("student.json", studentList, Student.class);
+    loadJson("board.json", boardList, Board.class);
+    loadJson("freeBoard.json", freeBoardList, Board.class);
   }
 
 
 
   private void saveData() {
-    saveCsv("student.csv", studentList);
-    saveCsv("board.csv", boardList);
-    saveCsv("freeBoard.csv", freeBoardList);
+    saveJson("student.json", studentList);
+    saveJson("board.json", boardList);
+    saveJson("freeBoard.json", freeBoardList);
   }
 
 
@@ -113,22 +115,35 @@ public class App {
 
 
 
-  @SuppressWarnings("unchecked")
-  private <T extends CsvObject> void loadCsv(String filename, List<T> list, Class<T> clazz) {
+  private <T> void loadJson(String filename, List<T> list, Class<T> clazz) {
     try {
-      Method factoryMethod = clazz.getDeclaredMethod("fromCsv", String.class);
-
       FileReader in0 = new FileReader(filename);
       BufferedReader in = new BufferedReader(in0); // <== Decorator 역할을 수행!
 
+      StringBuilder strBuilder = new StringBuilder();
       String line = null;
 
       while ((line = in.readLine()) != null) {
-        list.add((T) factoryMethod.invoke(null, line)); // Reflection API를 사용하여 스태틱 메서드 호출
-        // list.add(Member.fromCsv(line)); // 직접 스태틱 메서드 호출
+        strBuilder.append(line);
       }
 
       in.close();
+
+      Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+      Collection<T> objects = gson.fromJson(strBuilder.toString(),
+          TypeToken.getParameterized(Collection.class, clazz).getType());
+
+      list.addAll(objects);
+
+      Class<?>[] interfaces = clazz.getInterfaces();
+      for (Class<?> info : interfaces) {
+        if (info == AutoIncrement.class) {
+          AutoIncrement autoIncrement = (AutoIncrement) list.get(list.size() - 1);
+          autoIncrement.updateKey();
+          break;
+        }
+      }
+
 
     } catch (Exception e) {
       System.out.println(filename + " 파일을 읽는 중 오류 발생!");
@@ -136,20 +151,14 @@ public class App {
   }
 
 
-  private void saveCsv(String filename, List<? extends CsvObject> list) {
+  private void saveJson(String filename, List<?> list) {
     try {
       FileWriter out0 = new FileWriter(filename);
-      BufferedWriter out1 = new BufferedWriter(out0); // <== Decorator(장식품) 역할 수행!
-      PrintWriter out = new PrintWriter(out1); // <== Decorator(장식품) 역할 수행!
+      BufferedWriter out = new BufferedWriter(out0);
 
-      for (CsvObject obj : list) {
-        out.println(obj.toCsvString());
-        // Board나 Member 클래스에 필드가 추가/변경/삭제되더라도
-        // 여기 코드를 변경할 필요가 없다.
-        // 이것이 Information Expert 설계를 적용하는 이유다!
-        // 설계를 어떻게 하느냐에 따라 유지보수가 쉬워질 수도 있고,
-        // 어려워질 수도 있다.
-      }
+      Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").setPrettyPrinting().create();
+      out.write(gson.toJson(list));
+
       out.close();
 
     } catch (Exception e) {

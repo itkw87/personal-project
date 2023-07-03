@@ -13,6 +13,7 @@ public class StudentAddListener extends AbstractStudentListener {
   @Override
   public void service(BreadcrumbPrompt prompt) {
     Student s = new Student();
+    s.setNo(Student.userId++);
     s.setBirth(prompt.inputInt("생년월일? "));
     s.setName(prompt.inputString("이름? "));
     s.setGrade(prompt.inputInt("학년? "));

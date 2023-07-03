@@ -2,7 +2,7 @@ package personal.project.vo;
 
 import java.io.Serializable;
 
-public class Board implements Serializable, CsvObject {
+public class Board implements Serializable, CsvObject, AutoIncrement {
 
   private static final long serialVersionUID = 1L;
 
@@ -16,10 +16,7 @@ public class Board implements Serializable, CsvObject {
   private int viewCount;
   private long createdDate;
 
-  public Board() {
-    this.no = boardNo++;
-    this.createdDate = System.currentTimeMillis();
-  }
+  public Board() {}
 
   public Board(int no) {
     this.no = no;
@@ -47,6 +44,14 @@ public class Board implements Serializable, CsvObject {
   public String toCsvString() {
     return String.format("%d,%s,%s,%s,%s,%d,%d", this.getNo(), this.getTitle(), this.getContent(),
         this.getWriter(), this.getPassword(), this.getViewCount(), this.getCreatedDate());
+  }
+
+  @Override
+  public void updateKey() {
+    if (Board.boardNo <= this.no) {
+      Board.boardNo = this.no + 1;
+    }
+
   }
 
   public boolean equals(Object obj) {
