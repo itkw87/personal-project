@@ -27,12 +27,12 @@
     "createdDate": 1688229862272
   },
   {
-    "no": 8,
-    "title": "게시글8",
-    "content": "게시글8",
-    "writer": "게시글8",
+    "no": 10,
+    "title": "게시글10",
+    "content": "게시글10",
+    "writer": "게시글10",
     "password": "1111",
-    "viewCount": 0,
-    "createdDate": 1688382480096
+    "viewCount": 1,
+    "createdDate": 1688568106713
   }
 ]

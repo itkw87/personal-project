@@ -5,7 +5,7 @@
     "content": "자유게시글1",
     "writer": "자유게시글1",
     "password": "1111",
-    "viewCount": 0,
+    "viewCount": 1,
     "createdDate": 1688227304399
   },
   {
@@ -25,5 +25,14 @@
     "password": "1111",
     "viewCount": 0,
     "createdDate": 1688382465100
+  },
+  {
+    "no": 9,
+    "title": "자유게시글9",
+    "content": "자유게시글9",
+    "writer": "자유게시글9",
+    "password": "1111",
+    "viewCount": 0,
+    "createdDate": 1688458618261
   }
 ]

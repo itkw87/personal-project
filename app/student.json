@@ -36,15 +36,27 @@
     "scoreAvg": 48.666668
   },
   {
-    "no": 5,
-    "birth": 19930323,
-    "name": "최기성",
-    "grade": 3,
-    "koreanScore": 99,
-    "englishScore": 44,
-    "mathScore": 11,
+    "no": 6,
+    "birth": 19990923,
+    "name": "최최최",
+    "grade": 2,
+    "koreanScore": 23,
+    "englishScore": 34,
+    "mathScore": 34,
     "status": false,
-    "gender": "W",
-    "scoreAvg": 51.333332
+    "gender": "M",
+    "scoreAvg": 30.333334
+  },
+  {
+    "no": 7,
+    "birth": 19950925,
+    "name": "최기현",
+    "grade": 3,
+    "koreanScore": 33,
+    "englishScore": 24,
+    "mathScore": 33,
+    "status": true,
+    "gender": "M",
+    "scoreAvg": 30.0
   }
 ]

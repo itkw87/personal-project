@@ -1,14 +1,16 @@
 package personal.project.handler;
 
-import java.util.Iterator;
 import java.util.List;
+import personal.project.dao.StudentDao;
 import personal.project.vo.Student;
 import personal.util.BreadcrumbPrompt;
 
-public class StudentListListener extends AbstractStudentListener {
+public class StudentListListener implements StudentActionListener {
 
-  public StudentListListener(List<Student> list) {
-    super(list);
+  StudentDao studentDao;
+
+  public StudentListListener(StudentDao studentDao) {
+    this.studentDao = studentDao;
   }
 
   @Override
@@ -20,13 +22,12 @@ public class StudentListListener extends AbstractStudentListener {
         "------------------------------------------------------------------------------------------");
 
     // 목록에서 데이터를 대신 꺼내주는 객체를 얻는다.
-    Iterator<Student> iterator = list.iterator();
-    while (iterator.hasNext()) {
-      Student s = iterator.next();
+    List<Student> list = studentDao.list();
+    for (Student s : list) {
       System.out.printf(
           "  %d  |  %d  | %s |  %d  |   %d   |   %d   |   %d   |  %s  |  %s  |  %.1f\n", s.getNo(),
           s.getBirth(), s.getName(), s.getGrade(), s.getKoreanScore(), s.getEnglishScore(),
-          s.getMathScore(), toBooleanString(s.getStatus()), toGenderString(s.getGender()),
+          s.getMathScore(), s.getStatus() == true ? "재학" : "퇴학", s.getGender() == 'M' ? "남성" : "여성",
           s.getScoreAvg());
     }
   }
