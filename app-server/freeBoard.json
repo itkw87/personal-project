@@ -1,0 +1,38 @@
+[
+  {
+    "no": 3,
+    "title": "자유게시글1",
+    "content": "자유게시글1",
+    "writer": "자유게시글1",
+    "password": "1111",
+    "viewCount": 1,
+    "createdDate": 1688227304399
+  },
+  {
+    "no": 4,
+    "title": "자유게시글2",
+    "content": "자유게시글2",
+    "writer": "자유게시글2",
+    "password": "1111",
+    "viewCount": 0,
+    "createdDate": 1688229280667
+  },
+  {
+    "no": 7,
+    "title": "자유게시글7",
+    "content": "자유게시글7",
+    "writer": "자유게시글7",
+    "password": "1111",
+    "viewCount": 0,
+    "createdDate": 1688382465100
+  },
+  {
+    "no": 9,
+    "title": "자유게시글9",
+    "content": "자유게시글9",
+    "writer": "자유게시글9",
+    "password": "1111",
+    "viewCount": 0,
+    "createdDate": 1688458618261
+  }
+]
