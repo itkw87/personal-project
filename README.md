@@ -1,6 +1,3 @@
-# personal-project
-비트캠프 개인 미니 프로젝트
-
 # 실습 프로젝트
 
 ## 1. 자바 프로젝트 준비하기
@@ -165,6 +162,99 @@
 - Generalization(상속) 수행 
   - AbstractBoardListener 추상 클래스 정의
     - 추상 메서드 도입
+
+## 24. 제네릭을 사용하여 타입을 파라미터로 다루기
+
+- ArrayList, LinkedList, Stack, Queue에 제네릭 적용하기
+- T[] toArray(T[]) 메서드 추가하기
+
+## 25. Iterator 디자인 패턴을 활용하여 목록 조회 기능을 캡슐화하기
+
+- GoF의 디자인 패턴 중 Iterator 패턴의 동작원리 이해 및 구현
+- ArrayList, LinkedList, Stack, Queue에 적용
+- 중접 클래스 문법을 이용하여 Iterator 구현하기
+  - static/non-static nested 클래스 문법을 활용하는 방법
+  - local/anonymous 클래스 문법을 활용하는 방법
+
+## 26. 자바 Collection API 사용하기
+
+- 목록을 다루는 기존 클래스를 자바 컬렉션 API 로 교체
+
+## 27. File I/O API를 이용하여 데이터를 바이너리 형식으로 입출력하기
+
+- FileInputStream/FileOutputStream 사용법
+- 바이너리 형식으로 데이터를 입출력하는 방법
+
+## 28. 상속을 이용하여 primitive type과 String 출력 기능을 추가하기
+
+- 상속을 이용하여 바이트 입출력 기능을 확장하기
+  - DataInputStream = FileInputStream 클래스 + primitive type/String 값 읽기
+  - DataOutputStream = FileOutputStream 클래스 + primitive type/String 값 쓰기
+
+## 29. 입출력 성능을 높이기 위해 버퍼 기능 추가하기
+
+- 기존의 클래스에 버퍼 기능을 추가한다.
+  - BufferedDataInputStream = DataInputStream + 버퍼 기능
+  - BufferedDataOutputStream = DataOutputStream + 버퍼 기능
+
+## 30. 입출력 기능 확장에 상속 대신 Decorator 패턴을 적용하기
+
+- 상속 vs Decorator 패턴(GoF)
+  - 기존 코드를 손대지 않고 기능 확장하는 방법
+  - 상속: 기능 확장 용이
+  - Decorator: 기능 확장 및 기능 제거 용이
+- BufferedDataInputStream 분해
+  - BufferedInputStream, DataInputStream, FileInputStream
+- BufferedDataOutputStream 분해
+  - BufferedOutputStream, DataOutputStream, FileOutputStream
+
+## 31. Java Stream API 로 교체하기
+
+- 입출력 관련 클래스를 자바 스트림 클래스로 교체
+  - java.io.* 패키지의 클래스 사용
+
+## 32. 인스턴스를 통째로 입출력하기(객체 직렬화)
+
+- ObjectInputStream/ObjectOutputStream 사용법
+  - java.io.Serializable 인터페이스 사용법
+  - transient modifier 사용법
+
+## 33. character stream API를 사용하여 CSV 텍스트 형식으로 입출력하기
+
+- CSV 형식으로 데이터를 읽고 쓰는 법
+- FileReader/FileWriter 사용법
+
+## 34. 리팩토링: Factory Method 패턴(GoF), Information Expert 패턴(GRASP)
+
+- CSV 데이터 생성을 Board 클래스에 맡기기
+  - Information Expert 패턴 적용
+- CSV 데이터를 가지로 Board 클래스 생성하기
+  - Factory Method 패턴 적용
+  - Reflection API 사용법
+    - Class, Method 사용법
+
+## 35. JSON 형식으로 입출력하기
+
+- JSON 형식으로 데이터를 읽고 쓰는 법
+- Gson 라이브러리 사용법
+
+## 36. 데이터의 등록, 조회, 수정, 삭제 기능을 캡슐화하기 : DAO 객체 도입
+
+- XxxListener에서 데이터를 조작하는 코드를 캡슐화하여 별도의 클래스로 분리
+- 인터페이스로 DAO 객체 사용법을 정의
+
+## 37. 네트워킹을 이용하여 데이터 공유하기 : Client/Server 아키텍처로 전환
+
+- 네트워크 프로그래밍 방법
+  - Client와 Server 개념
+  - 프로토콜에 따라 애플리케이션 간에 데이터를 주고 받기
+  - GoF의 프록시 패턴의 원리 이해 및 적용
+  - 분산 컴퓨팅의 개념과 주요 기술 이해
+
+## 38. DAO 프록시 객체를 자동 생성하기
+
+- java.lang.reflect.Proxy 클래스 사용법
+- 프록시 객체의 구동원리 이해 
 
 
 
