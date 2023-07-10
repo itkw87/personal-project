@@ -1,0 +1,38 @@
+[
+  {
+    "no": 1,
+    "title": "게시글11",
+    "content": "게시글11",
+    "writer": "게시글1",
+    "password": "1111",
+    "viewCount": 1,
+    "createdDate": 1688227293494
+  },
+  {
+    "no": 6,
+    "title": "게시글4",
+    "content": "게시글4",
+    "writer": "게시글4",
+    "password": "1111",
+    "viewCount": 0,
+    "createdDate": 1688229862272
+  },
+  {
+    "no": 12,
+    "title": "게시글12",
+    "content": "게시글12",
+    "writer": "게시글12",
+    "password": "1111",
+    "viewCount": 1,
+    "createdDate": 1688643867165
+  },
+  {
+    "no": 14,
+    "title": "게시글14",
+    "content": "게시글14",
+    "writer": "게시글14",
+    "password": "1111",
+    "viewCount": 1,
+    "createdDate": 1688724572469
+  }
+]

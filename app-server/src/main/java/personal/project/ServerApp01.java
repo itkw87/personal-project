@@ -16,7 +16,7 @@ import personal.project.vo.Board;
 import personal.project.vo.Student;
 
 // 1) 클라이언트가 보낸 명령을 데이터이름과 메서드 이름으로 분리한다.
-public class ServerApp {
+public class ServerApp01 {
 
   int port;
   ServerSocket serverSocket;
@@ -25,7 +25,7 @@ public class ServerApp {
   BoardDao boardDao = new BoardListDao("board.json");
   BoardDao freeBoardDao = new BoardListDao("freeBoard.json");
 
-  public ServerApp(int port) throws Exception {
+  public ServerApp01(int port) throws Exception {
     this.port = port;
   }
 
@@ -39,7 +39,7 @@ public class ServerApp {
       return;
     }
 
-    ServerApp app = new ServerApp(Integer.parseInt(args[0]));
+    ServerApp01 app = new ServerApp01(Integer.parseInt(args[0]));
     app.execute();
     app.close();
   }
