@@ -1,0 +1,62 @@
+[
+  {
+    "no": 1,
+    "birth": 19950925,
+    "name": "최기현",
+    "grade": 3,
+    "koreanScore": 33,
+    "englishScore": 33,
+    "mathScore": 33,
+    "status": true,
+    "gender": "M",
+    "scoreAvg": 33.0
+  },
+  {
+    "no": 3,
+    "birth": 19990923,
+    "name": "김화석",
+    "grade": 4,
+    "koreanScore": 56,
+    "englishScore": 67,
+    "mathScore": 65,
+    "status": false,
+    "gender": "W",
+    "scoreAvg": 62.666668
+  },
+  {
+    "no": 4,
+    "birth": 19990424,
+    "name": "김석유",
+    "grade": 4,
+    "koreanScore": 25,
+    "englishScore": 45,
+    "mathScore": 76,
+    "status": true,
+    "gender": "W",
+    "scoreAvg": 48.666668
+  },
+  {
+    "no": 8,
+    "birth": 19950925,
+    "name": "김수정",
+    "grade": 2,
+    "koreanScore": 77,
+    "englishScore": 77,
+    "mathScore": 77,
+    "status": true,
+    "gender": "W",
+    "scoreAvg": 77.0
+  },
+  {
+    "no": 12,
+    "birth": 19950925,
+    "name": "최기현",
+    "grade": 3,
+    "koreanScore": 98,
+    "englishScore": 89,
+    "mathScore": 33,
+    "status": false,
+    "gender": "W",
+    "scoreAvg": 73.333336
+  }
+]
