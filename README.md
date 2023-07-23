@@ -274,8 +274,16 @@
 
 ## 0.44v. 스레드풀(thread pool) 구현하여 스레드 재사용 기능 추가
 - 업데이트 프로젝트
-  - app-server 업데이트 후 app44-server 폴더로 백업
+  - app-server프로젝트 폴더 업데이트 후 app44-server 폴더로 백업
 
 - 업데이트 사항
   - GoF의 FlyWeight 디자인 패턴(Pooling 기법)을 활용하여 스레드를 재사용 기능 추가
+
+
+## 0.45v. 직접 구현했던 스레드풀(thread pool) 자바에서 제공하는 thread pool로 대체하여 적용하기
+- 업데이트 프로젝트
+  - app-server프로젝트 폴더 업데이트 후 app45-server 폴더로 백업
+
+- 업데이트 사항
+  - 직접 구현하여 사용했던 스레드풀(thread pool) 기능을 자바에서 제공하는 thread pool로 대체하여 적용
 
