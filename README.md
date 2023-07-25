@@ -294,27 +294,27 @@
 - 업데이트 사항
   - DBMS와 연동하여 작업하는 DAO 구현
 
-## 47. SQL 삽입 공격 차단하기
+## 0.47v. SQL 삽입 공격 차단하기
 - 업데이트 프로젝트
   - app-client프로젝트 폴더 업데이트 후 app47-client 폴더로 백업
 - 업데이트 사항
   - Statement객체 사용시 취약점을 파악하고 PreparedStatment객체로 대체
   - 패스워드 데이터에 sha1() 암호화 적용해보기
 
-## 48. 외부키(Foreign Key) 사용하기
+## 0.48v. 외부키(Foreign Key) 사용하기
 - 업데이트 프로젝트
   - app-client, app-common프로젝트 폴더 업데이트 후 app48-client, app48-common 폴더로 백업
 - 업데이트 사항
   - 테이블 구조 변경(외부키 적용 및 사용) => Member테이블의 PK를 Board테이블의 FK로 사용 
   - 조인을 이용하여 분리된 테이블 값을 한번에 조회하여 리스트로 출력
 
-## 49. 로그인 적용하기
+## 0.49v. 로그인 적용하기
 - 업데이트 프로젝트
   - app-client, app-common프로젝트 폴더 업데이트 후 app49-client, app49-common 폴더로 백업
 - 업데이트 사항
   - 간단한 로그인 구현 및 로그인 데이터로 메뉴 기능 다루기
 
-## 50. Application Server 아키텍터로 전환하기
+## 0.50v. Application Server 아키텍터로 전환하기
 - 업데이트 프로젝트
   - app-server, app-client, app-common프로젝트 폴더 업데이트 후 app50-server, app50-client, app50-common 폴더로 백업
 - 업데이트 사항
