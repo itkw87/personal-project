@@ -314,7 +314,7 @@
 - 업데이트 사항
   - 간단한 로그인 구현 및 로그인 데이터로 메뉴 기능 다루기
 
-## 0.50v. Application Server 아키텍터로 전환하기
+## 0.50v. Application Server 아키텍처로 전환하기
 - 업데이트 프로젝트
   - app-server, app-client, app-common프로젝트 폴더 업데이트 후 app50-server, app50-client, app50-common 폴더로 백업
 - 업데이트 사항
