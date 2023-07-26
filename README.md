@@ -320,3 +320,13 @@
 - 업데이트 사항
   - Clinet/Server 아키텍처 -> Application Server 아키텍처로 구조 변경하기
   - 자바의 스레드 풀 적용하여 여러 클라이언트가 하나의 Application Server에 접속하여 하나의 해당 Application Server를 통해 DBMS와 통신하게 구현
+
+
+## 0.51v. DB 커넥션 풀을 이용한 Connection객체 재사용 기능 구현하기
+- 업데이트 프로젝트
+  - app-server프로젝트 폴더 업데이트 후 app51-server 폴더로 백업
+- 업데이트 사항
+  - 각 스레드내에서만 유효한 ThreadLocal객체 사용하여 해당 스레드 전용 Connection객체 보관하고 꺼내기 
+  - FlyWeight패턴(=Pooling기법)을 적용하여 DB 커넥션 재사용하기 
+  - 스레드 풀과 커넥션 풀 동시 적용
+  
