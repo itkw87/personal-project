@@ -331,7 +331,7 @@
   - 스레드 풀과 커넥션 풀 동시 적용
   
 
-## 0.52v. 기존에 직접 JDBC API로 작성한 코드 -> Mybatis SQL-mapper 프레임워크 사용해 교체하기
+## 0.52v. 기존에 직접 JDBC API로 작성한 코드 -> Mybatis 프레임워크 사용해 교체하기
 - 업데이트 프로젝트
   - app51-server -> app52-server 
   - app51-common -> app52-common
