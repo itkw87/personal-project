@@ -1,4 +1,4 @@
-package personal.util;
+package personal.project.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

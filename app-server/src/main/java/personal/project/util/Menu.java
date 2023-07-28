@@ -1,4 +1,4 @@
-package personal.util;
+package personal.project.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
