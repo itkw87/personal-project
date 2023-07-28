@@ -330,3 +330,11 @@
   - FlyWeight패턴(=Pooling기법)을 적용하여 DB 커넥션 재사용하기 
   - 스레드 풀과 커넥션 풀 동시 적용
   
+
+## 0.52v. 기존에 직접 JDBC API로 작성한 코드 -> Mybatis SQL-mapper 프레임워크 사용해 교체하기
+- 업데이트 프로젝트
+  - app51-server -> app52-server 
+  - app51-common -> app52-common
+- 업데이트 사항
+  - JDBC API를 사용해 자바소스 파일에서 작성한 SQL문을 Mybatis 프레임워크를 사용하여 Mapper XML(Dao.xml)파일에 작성  
+  - mybatis설정파일로 DB환경설정(mybatis-config.xml)
