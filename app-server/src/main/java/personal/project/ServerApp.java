@@ -2,33 +2,15 @@ package personal.project;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import personal.net.NetProtocol;
-import personal.project.dao.BoardDao;
-import personal.project.dao.MemberDao;
-import personal.project.dao.MySQLBoardDao;
-import personal.project.dao.MySQLMemberDao;
-import personal.project.handler.BoardAddListener;
-import personal.project.handler.BoardDeleteListener;
-import personal.project.handler.BoardDetailListener;
-import personal.project.handler.BoardListListener;
-import personal.project.handler.BoardUpdateListener;
-import personal.project.handler.LoginListener;
-import personal.project.handler.MemberAddListener;
-import personal.project.handler.MemberDeleteListener;
-import personal.project.handler.MemberDetailListener;
-import personal.project.handler.MemberListListener;
-import personal.project.handler.MemberUpdateListener;
 import personal.project.util.BreadcrumbPrompt;
-import personal.project.util.Menu;
+import personal.project.util.DispatcherListener;
 import personal.project.util.MenuGroup;
 import personal.project.util.SqlSessionFactoryProxy;
 
@@ -37,14 +19,10 @@ public class ServerApp {
   // 자바 스레드 풀 준비
   ExecutorService threadPool = Executors.newFixedThreadPool(2);
 
+  MenuGroup mainMenu = new MenuGroup("/", "메인");
+  DispatcherListener facadeListener = new DispatcherListener();
+
   SqlSessionFactory sqlSessionFactory;
-
-  private final int BOARD = 1;
-  private final int FREE_BOARD = 2;
-  MemberDao memberDao;
-  BoardDao boardDao;
-
-  MenuGroup mainMenu = new MenuGroup("메인");
 
   int port;
 
@@ -52,17 +30,7 @@ public class ServerApp {
 
     this.port = port;
 
-    // 1) mybatis 설정 파일을 읽어들일 도구를 준비한다.
-    InputStream mybatisConfigIn = Resources.getResourceAsStream("config/mybatis-config.xml");
 
-    // 2) SqlSessionFactory를 만들어줄 빌더 객체 준비
-    SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-
-    // 3) 빌더 객체를 통해 SqlSessionFactory를 생성
-    sqlSessionFactory = new SqlSessionFactoryProxy(builder.build(mybatisConfigIn));
-
-    this.memberDao = new MySQLMemberDao(sqlSessionFactory);
-    this.boardDao = new MySQLBoardDao(sqlSessionFactory);
 
     prepareMenu();
   }
@@ -102,7 +70,8 @@ public class ServerApp {
 
       out.writeUTF("[학교 통합 정보관리 시스템]\n" + "-----------------------------------------");
 
-      new LoginListener(memberDao).service(prompt);
+      prompt.setAttribute("menuPath", "login");
+      facadeListener.service(prompt);
 
       mainMenu.execute(prompt);
       out.writeUTF(NetProtocol.NET_END);
@@ -112,45 +81,36 @@ public class ServerApp {
       e.printStackTrace();
 
     } finally {
-      ((SqlSessionFactoryProxy) sqlSessionFactory).clean();
+      SqlSessionFactoryProxy sqlSessionFactoryProxy =
+          (SqlSessionFactoryProxy) facadeListener.getBean("sqlSessionFactory");
+      sqlSessionFactoryProxy.clean();
+
     }
   }
 
   private void prepareMenu() {
-    MenuGroup memberMenu = new MenuGroup("회원");
-    memberMenu.add(new Menu("등록", new MemberAddListener(memberDao, sqlSessionFactory)));
-    memberMenu.add(new Menu("목록", new MemberListListener(memberDao)));
-    memberMenu.add(new Menu("조회", new MemberDetailListener(memberDao)));
-    memberMenu.add(new Menu("변경", new MemberUpdateListener(memberDao, sqlSessionFactory)));
-    memberMenu.add(new Menu("삭제", new MemberDeleteListener(memberDao, sqlSessionFactory)));
+    MenuGroup memberMenu = new MenuGroup("member", "회원");
+    memberMenu.add("member/add", "등록", facadeListener);
+    memberMenu.add("member/list", "목록", facadeListener);
+    memberMenu.add("member/detail", "조회", facadeListener);
+    memberMenu.add("member/update", "변경", facadeListener);
+    memberMenu.add("member/delete", "삭제", facadeListener);
     mainMenu.add(memberMenu);
 
-    MenuGroup boardMenu = new MenuGroup("게시글");
-    boardMenu.add(new Menu("등록", new BoardAddListener(BOARD, boardDao, sqlSessionFactory)));
-    boardMenu.add(new Menu("목록", new BoardListListener(BOARD, boardDao)));
-    boardMenu.add(new Menu("조회", new BoardDetailListener(BOARD, boardDao, sqlSessionFactory)));
-    boardMenu.add(new Menu("변경", new BoardUpdateListener(BOARD, boardDao, sqlSessionFactory)));
-    boardMenu.add(new Menu("삭제", new BoardDeleteListener(BOARD, boardDao, sqlSessionFactory)));
+    MenuGroup boardMenu = new MenuGroup("board", "게시글");
+    boardMenu.add("board/add", "등록", facadeListener);
+    boardMenu.add("board/list", "목록", facadeListener);
+    boardMenu.add("board/detail", "조회", facadeListener);
+    boardMenu.add("board/update", "변경", facadeListener);
+    boardMenu.add("board/delete", "삭제", facadeListener);
     mainMenu.add(boardMenu);
 
-    MenuGroup readingMenu = new MenuGroup("자유게시글");
-    readingMenu.add(new Menu("등록", new BoardAddListener(FREE_BOARD, boardDao, sqlSessionFactory)));
-    readingMenu.add(new Menu("목록", new BoardListListener(FREE_BOARD, boardDao)));
-    readingMenu
-        .add(new Menu("조회", new BoardDetailListener(FREE_BOARD, boardDao, sqlSessionFactory)));
-    readingMenu
-        .add(new Menu("변경", new BoardUpdateListener(FREE_BOARD, boardDao, sqlSessionFactory)));
-    readingMenu
-        .add(new Menu("삭제", new BoardDeleteListener(FREE_BOARD, boardDao, sqlSessionFactory)));
-    mainMenu.add(readingMenu);
-
-    // Menu helloMenu = new Menu("안녕!");
-    // helloMenu.addActionListener(new HeaderListener());
-    // helloMenu.addActionListener(new HelloListener());
-    // helloMenu.addActionListener(new FooterListener());
-    // mainMenu.add(helloMenu);
+    MenuGroup freeBoardMenu = new MenuGroup("freeBoard", "자유게시글");
+    freeBoardMenu.add("freeBoard/add", "등록", facadeListener);
+    freeBoardMenu.add("freeBoard/list", "목록", facadeListener);
+    freeBoardMenu.add("freeBoard/detail", "조회", facadeListener);
+    freeBoardMenu.add("freeBoard/update", "변경", facadeListener);
+    freeBoardMenu.add("freeBoard/delete", "삭제", facadeListener);
+    mainMenu.add(freeBoardMenu);
   }
-
-
-
 }

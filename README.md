@@ -1,5 +1,13 @@
 # 개인 프로젝트 Release Note
 
+
+## 0.53v. 리스너 객체에 GoF Facade 패턴 적용하기
+- 업데이트 프로젝트
+  - app52-server -> app53-server 
+- 업데이트 사항
+  - ActionListener 인터페이스 구현체 실행시 Facade 객체를 통해 결합도↓ 유지보수 용이성 및 유연성↑
+
+
 ## 0.52v. 기존에 직접 JDBC API로 작성한 코드 -> Mybatis 프레임워크 사용해 교체하기
 - 업데이트 프로젝트
   - app51-server -> app52-server 

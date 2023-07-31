@@ -52,7 +52,7 @@
 	   korean_score,  
 	   english_score,  
 	   math_score,
-	   scoreAvg,  
+	   round(scoreAvg, 1),  
 	   email,  
 	   status,  
 	   created_date  
