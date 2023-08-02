@@ -29,27 +29,25 @@ public class SqlSessionFactoryProxy implements SqlSessionFactory {
     return original.openSession();
   }
 
-  // 똑같은 스레드 일 때만 똑같은 DB 커넥션을 유지하게 해야함.
   public SqlSession openSession(boolean autoCommit) {
 
-    if (!autoCommit) { // 자동 커밋이 아니면
-      // 수동 커밋으로 동작하는 동작하는 sqlSession을 원한다는 것은
-      // 여러 데이터 변경 작업을 묶어서 다루겠다는 의미이다.
+    if (!autoCommit) {
+      // 수동 커밋으로 동작하는 SqlSession 을 원한다는 것은
+      // 여러 데이터 변경 작업을 묶어서 다루겠다는 의미다.
       // 그렇게 하려면 동일한 SqlSession 객체를 사용해야 한다.
-      // 이를 위해 스레드에 sqlSession 객체를 보관해두고 리턴한다.
+      // 이를 위해 스레드에 SqlSession 객체를 보관해두고 리턴한다.
 
       // 1) 스레드에 보관된 SqlSession 객체를 꺼낸다.
       SqlSession sqlSession = sqlSessionBox.get();
 
-      // 2) 아직 스레드에 보관된 객체가 없다면 새로 만들어 ThreadLocal 에보관한다.
       if (sqlSession == null) {
+        // 2) 아직 스레드에 보관된 객체가 없다면 새로 만들어 보관한다.
         sqlSession = original.openSession(false);
         sqlSessionBox.set(sqlSession);
       }
 
-      // 3) 스레드에 보관하던 것이든 새로 만든 것이든 SqlSession 객체를 리턴한다.
+      // 3) 스레드에 보관된 SqlSession 객체를 리턴한다.
       return sqlSession;
-
     }
 
     return original.openSession(autoCommit);
@@ -82,6 +80,4 @@ public class SqlSessionFactoryProxy implements SqlSessionFactory {
   public Configuration getConfiguration() {
     return original.getConfiguration();
   }
-
-
 }

@@ -2,13 +2,11 @@ package personal.project.util;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.Stack;
 
 public class BreadcrumbPrompt extends Prompt {
 
   private Stack<String> breadcrumbs = new Stack<>();
-
 
   public BreadcrumbPrompt(DataInputStream in, DataOutputStream out) {
     super(in, out);
@@ -22,7 +20,7 @@ public class BreadcrumbPrompt extends Prompt {
     this.breadcrumbs.pop();
   }
 
-  public String inputMenu() throws IOException {
+  public String inputMenu() throws Exception {
     StringBuilder titleBuilder = new StringBuilder(); // 예) 메인/회원>
     for (int i = 0; i < this.breadcrumbs.size(); i++) {
       if (titleBuilder.length() > 0) {
@@ -33,5 +31,5 @@ public class BreadcrumbPrompt extends Prompt {
     titleBuilder.append("> ");
     return this.inputString(titleBuilder.toString());
   }
-
 }
+

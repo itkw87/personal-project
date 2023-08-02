@@ -3,8 +3,10 @@ package personal.project.handler;
 import java.util.List;
 import personal.project.dao.MemberDao;
 import personal.project.util.BreadcrumbPrompt;
+import personal.project.util.Component;
 import personal.project.vo.Member;
 
+@Component(value = "/member/list")
 public class MemberListListener implements MemberActionListener {
 
   MemberDao studentDao;

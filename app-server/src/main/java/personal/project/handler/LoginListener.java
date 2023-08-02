@@ -3,8 +3,10 @@ package personal.project.handler;
 import java.io.IOException;
 import personal.project.dao.MemberDao;
 import personal.project.util.BreadcrumbPrompt;
+import personal.project.util.Component;
 import personal.project.vo.Member;
 
+@Component(value = "/auth/login")
 public class LoginListener implements MemberActionListener {
 
   MemberDao memberDao;

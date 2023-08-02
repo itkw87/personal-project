@@ -4,8 +4,10 @@ import java.io.IOException;
 import org.apache.ibatis.session.SqlSessionFactory;
 import personal.project.dao.MemberDao;
 import personal.project.util.BreadcrumbPrompt;
+import personal.project.util.Component;
 import personal.project.vo.Member;
 
+@Component(value = "/member/add")
 public class MemberAddListener implements MemberActionListener {
   MemberDao memberDao;
   SqlSessionFactory sqlSessionFactory;

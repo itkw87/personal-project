@@ -9,6 +9,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.ibatis.session.SqlSessionFactory;
 import personal.net.NetProtocol;
+import personal.project.config.AppConfig;
+import personal.project.util.ApplicationContext;
 import personal.project.util.BreadcrumbPrompt;
 import personal.project.util.DispatcherListener;
 import personal.project.util.MenuGroup;
@@ -20,17 +22,16 @@ public class ServerApp {
   ExecutorService threadPool = Executors.newFixedThreadPool(2);
 
   MenuGroup mainMenu = new MenuGroup("/", "메인");
-  DispatcherListener facadeListener = new DispatcherListener();
 
-  SqlSessionFactory sqlSessionFactory;
+  ApplicationContext iocContainer;
+  DispatcherListener facadeListener;
 
   int port;
 
   public ServerApp(int port) throws Exception {
-
     this.port = port;
-
-
+    iocContainer = new ApplicationContext(AppConfig.class);
+    facadeListener = new DispatcherListener(iocContainer);
 
     prepareMenu();
   }
@@ -70,7 +71,7 @@ public class ServerApp {
 
       out.writeUTF("[학교 통합 정보관리 시스템]\n" + "-----------------------------------------");
 
-      prompt.setAttribute("menuPath", "login");
+      prompt.setAttribute("menuPath", "/auth/login");
       facadeListener.service(prompt);
 
       mainMenu.execute(prompt);
@@ -82,35 +83,35 @@ public class ServerApp {
 
     } finally {
       SqlSessionFactoryProxy sqlSessionFactoryProxy =
-          (SqlSessionFactoryProxy) facadeListener.getBean("sqlSessionFactory");
+          (SqlSessionFactoryProxy) iocContainer.getBean(SqlSessionFactory.class);
       sqlSessionFactoryProxy.clean();
 
     }
   }
 
   private void prepareMenu() {
-    MenuGroup memberMenu = new MenuGroup("member", "회원");
-    memberMenu.add("member/add", "등록", facadeListener);
-    memberMenu.add("member/list", "목록", facadeListener);
-    memberMenu.add("member/detail", "조회", facadeListener);
-    memberMenu.add("member/update", "변경", facadeListener);
-    memberMenu.add("member/delete", "삭제", facadeListener);
+    MenuGroup memberMenu = new MenuGroup("/member", "회원");
+    memberMenu.add("/member/add", "등록", facadeListener);
+    memberMenu.add("/member/list", "목록", facadeListener);
+    memberMenu.add("/member/detail", "조회", facadeListener);
+    memberMenu.add("/member/update", "변경", facadeListener);
+    memberMenu.add("/member/delete", "삭제", facadeListener);
     mainMenu.add(memberMenu);
 
-    MenuGroup boardMenu = new MenuGroup("board", "게시글");
-    boardMenu.add("board/add", "등록", facadeListener);
-    boardMenu.add("board/list", "목록", facadeListener);
-    boardMenu.add("board/detail", "조회", facadeListener);
-    boardMenu.add("board/update", "변경", facadeListener);
-    boardMenu.add("board/delete", "삭제", facadeListener);
+    MenuGroup boardMenu = new MenuGroup("/board", "게시글");
+    boardMenu.add("/board/add?category=1", "등록", facadeListener);
+    boardMenu.add("/board/list?category=1", "목록", facadeListener);
+    boardMenu.add("/board/detail?category=1", "조회", facadeListener);
+    boardMenu.add("/board/update?category=1", "변경", facadeListener);
+    boardMenu.add("/board/delete?category=1", "삭제", facadeListener);
     mainMenu.add(boardMenu);
 
-    MenuGroup freeBoardMenu = new MenuGroup("freeBoard", "자유게시글");
-    freeBoardMenu.add("freeBoard/add", "등록", facadeListener);
-    freeBoardMenu.add("freeBoard/list", "목록", facadeListener);
-    freeBoardMenu.add("freeBoard/detail", "조회", facadeListener);
-    freeBoardMenu.add("freeBoard/update", "변경", facadeListener);
-    freeBoardMenu.add("freeBoard/delete", "삭제", facadeListener);
+    MenuGroup freeBoardMenu = new MenuGroup("/freeBoard", "자유게시글");
+    freeBoardMenu.add("/board/add?category=2", "등록", facadeListener);
+    freeBoardMenu.add("/board/list?category=2", "목록", facadeListener);
+    freeBoardMenu.add("/board/detail?category=2", "조회", facadeListener);
+    freeBoardMenu.add("/board/update?category=2", "변경", facadeListener);
+    freeBoardMenu.add("/board/delete?category=2", "삭제", facadeListener);
     mainMenu.add(freeBoardMenu);
   }
 }

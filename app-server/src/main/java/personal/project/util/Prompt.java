@@ -8,6 +8,7 @@ import java.util.Map;
 import personal.net.NetProtocol;
 
 public class Prompt {
+
   Map<String, Object> context = new HashMap<>();
   StringBuffer buf = new StringBuffer();
   DataInputStream in;
@@ -58,8 +59,6 @@ public class Prompt {
     this.out.writeUTF(NetProtocol.RESPONSE_END);
     buf.setLength(0);
   }
-
-
 }
 
 

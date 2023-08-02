@@ -5,16 +5,16 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import personal.project.dao.BoardDao;
 import personal.project.util.ActionListener;
 import personal.project.util.BreadcrumbPrompt;
+import personal.project.util.Component;
 import personal.project.vo.Board;
 import personal.project.vo.Member;
 
+@Component(value = "/board/delete")
 public class BoardDeleteListener implements ActionListener {
-  int category;
   BoardDao boardDao;
   SqlSessionFactory sqlSessionFactory;
 
-  public BoardDeleteListener(int category, BoardDao boardDao, SqlSessionFactory sqlSessionFactory) {
-    this.category = category;
+  public BoardDeleteListener(BoardDao boardDao, SqlSessionFactory sqlSessionFactory) {
     this.boardDao = boardDao;
     this.sqlSessionFactory = sqlSessionFactory;
   }
@@ -25,7 +25,7 @@ public class BoardDeleteListener implements ActionListener {
     Board b = new Board();
     b.setNo(prompt.inputInt("번호? "));
     b.setWriter((Member) prompt.getAttribute("loginUser"));
-    b.setCategory(category);
+    b.setCategory(Integer.parseInt((String) prompt.getAttribute("category")));
 
     try {
       if (boardDao.delete(b) == 0) {

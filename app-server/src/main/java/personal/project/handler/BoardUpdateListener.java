@@ -5,16 +5,16 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import personal.project.dao.BoardDao;
 import personal.project.util.ActionListener;
 import personal.project.util.BreadcrumbPrompt;
+import personal.project.util.Component;
 import personal.project.vo.Board;
 import personal.project.vo.Member;
 
+@Component(value = "/board/update")
 public class BoardUpdateListener implements ActionListener {
-  int category;
   BoardDao boardDao;
   SqlSessionFactory sqlSessionFactory;
 
-  public BoardUpdateListener(int category, BoardDao boardDao, SqlSessionFactory sqlSessionFactory) {
-    this.category = category;
+  public BoardUpdateListener(BoardDao boardDao, SqlSessionFactory sqlSessionFactory) {
     this.boardDao = boardDao;
     this.sqlSessionFactory = sqlSessionFactory;
   }
@@ -24,7 +24,8 @@ public class BoardUpdateListener implements ActionListener {
   public void service(BreadcrumbPrompt prompt) throws IOException {
     int boardNo = prompt.inputInt("번호? ");
 
-    Board board = boardDao.findBy(category, boardNo);
+    Board board =
+        boardDao.findBy(Integer.parseInt((String) prompt.getAttribute("category")), boardNo);
     if (board == null) {
       System.out.println("해당 번호의 게시글이 없습니다!");
       return;
@@ -33,7 +34,6 @@ public class BoardUpdateListener implements ActionListener {
     board.setTitle(prompt.inputString("제목(%s)? ", board.getTitle()));
     board.setContent(prompt.inputString("내용(%s)? ", board.getContent()));
     board.setWriter((Member) prompt.getAttribute("loginUser"));
-    board.setCategory(category);
 
     try {
       if (boardDao.update(board) == 0) {

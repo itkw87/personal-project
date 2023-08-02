@@ -4,7 +4,9 @@ import java.io.IOException;
 import org.apache.ibatis.session.SqlSessionFactory;
 import personal.project.dao.MemberDao;
 import personal.project.util.BreadcrumbPrompt;
+import personal.project.util.Component;
 
+@Component(value = "/member/delete")
 public class MemberDeleteListener implements MemberActionListener {
   MemberDao memberDao;
   SqlSessionFactory sqlSessionFactory;

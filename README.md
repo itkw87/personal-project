@@ -1,6 +1,13 @@
 # 개인 프로젝트 Release Note
 
 
+## 0.54v. IoC 컨테이너 적용하기
+- 업데이트 프로젝트
+  - app53-server -> app54-server 
+- 업데이트 사항
+  - IOC 컨테이너를 구현하여 기존의 SqlSessionFactory구현체, DAO객체들, ActionListener 구현체들을 IoC 컨테이너로 생성 및 관리하기
+
+
 ## 0.53v. 리스너 객체에 GoF Facade 패턴 적용하기
 - 업데이트 프로젝트
   - app52-server -> app53-server 

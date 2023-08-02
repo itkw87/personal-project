@@ -5,15 +5,15 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import personal.project.dao.BoardDao;
 import personal.project.util.ActionListener;
 import personal.project.util.BreadcrumbPrompt;
+import personal.project.util.Component;
 import personal.project.vo.Board;
 
+@Component(value = "/board/detail")
 public class BoardDetailListener implements ActionListener {
-  int category;
   BoardDao boardDao;
   SqlSessionFactory sqlSessionFactory;
 
-  public BoardDetailListener(int category, BoardDao boardDao, SqlSessionFactory sqlSessionFactory) {
-    this.category = category;
+  public BoardDetailListener(BoardDao boardDao, SqlSessionFactory sqlSessionFactory) {
     this.boardDao = boardDao;
     this.sqlSessionFactory = sqlSessionFactory;
   }
@@ -23,7 +23,8 @@ public class BoardDetailListener implements ActionListener {
   public void service(BreadcrumbPrompt prompt) throws IOException {
     int boardNo = prompt.inputInt("번호? ");
 
-    Board board = boardDao.findBy(category, boardNo);
+    Board board =
+        boardDao.findBy(Integer.parseInt((String) prompt.getAttribute("category")), boardNo);
     if (board == null) {
       prompt.println("해당 번호의 게시글이 없습니다!");
       return;
@@ -35,9 +36,8 @@ public class BoardDetailListener implements ActionListener {
     prompt.printf("조회수: %s\n", board.getViewCount());
     prompt.printf("등록일: %tY-%1$tm-%1$td\n", board.getCreatedDate());
 
-    board.setCategory(this.category);
-    board.setViewCount(board.getViewCount() + 1);
     try {
+      board.setViewCount(board.getViewCount() + 1);
       boardDao.updateCount(board);
       sqlSessionFactory.openSession(false).commit();
     } catch (Exception e) {
