@@ -14,7 +14,7 @@ plugins {
 
 rootProject.name = 'personal-project'
 // include('app')
-include('app-client')
+// include('app-client')
 include('app-server')
 include('app-common')
 
