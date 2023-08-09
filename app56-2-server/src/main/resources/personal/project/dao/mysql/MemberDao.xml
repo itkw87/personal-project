@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="personal.project.dao.MemberDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="member" id="memberMap">
+    <id     column="member_no"       property="no"/>
+    <result column="authority"          property="authority"/>
+    <result column="birth"        property="birth"/>
+    <result column="grade"     property="grade"/>
+    <result column="name"     property="name"/>
+    <result column="gender"       property="gender"/>
+    <result column="korean_score"   property="koreanScore"/>
+    <result column="english_score"   property="englishScore"/>
+    <result column="math_score"   property="mathScore"/>
+    <result column="scoreAvg"   property="scoreAvg"/>
+    <result column="email"   property="email"/>
+    <result column="password"   property="password"/>
+    <result column="status"   property="status"/>
+    <result column="created_date"   property="createdDate"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="member">
+  insert 
+      into ps_member(authority, birth, grade, name, gender, korean_score, english_score, math_score, scoreAvg, email, password, status) 
+      values(#{authority},#{birth},#{grade},#{name},#{gender},#{koreanScore},#{englishScore},#{mathScore},#{scoreAvg},#{email},sha1(#{password}),#{status})
+  </insert>
+  
+  <select id="findAll" resultMap="memberMap">
+    select 
+      member_no,
+      authority, 
+      birth, 
+      name, 
+      gender, 
+      email, 
+      status 
+    from ps_member 
+    order by member_no asc 
+  </select>
+  
+  <select id="findBy" parameterType="int" resultMap="memberMap">
+	 select  
+	   member_no, 
+	   authority,  
+	   birth,  
+	   grade,
+	   name,  
+	   gender,  
+	   korean_score,  
+	   english_score,  
+	   math_score,
+	   format(scoreAvg, 2) as scoreAvg,  
+	   email,  
+	   status,  
+	   created_date  
+	 from ps_member 
+	 where member_no=#{no}
+  </select>
+  
+  <select id="findByEmailAndPassword" parameterType="member" resultMap="memberMap">
+    select
+      member_no, 
+      authority, 
+      birth, 
+      grade,
+      name, 
+      gender, 
+      korean_score, 
+      english_score, 
+      math_score,
+      format(scoreAvg, 2) as scoreAvg,  
+      email, 
+      status, 
+      created_date 
+    from ps_member
+    where
+      email=#{email}
+      and password=sha1(#{password})
+  </select>
+  
+  <update id="update" parameterType="member">
+    update ps_member 
+      set birth=#{birth},
+          grade=#{grade},
+          name=#{name},
+          gender=#{gender},
+          korean_score=#{koreanScore},
+          english_score=#{englishScore},
+          math_score=#{mathScore},
+          scoreAvg=#{scoreAvg},
+          email=#{email}, 
+          password=sha1(#{password}),
+          status=#{status} 
+      where member_no=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete 
+      from ps_member 
+      where member_no=#{no}
+  </delete>
+</mapper>
+
+
+
+
+
