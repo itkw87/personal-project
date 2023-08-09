@@ -27,7 +27,7 @@
     values(#{title},#{content},#{writer.no},#{category})
   </insert>
   
-  <select id="findAll" parameterType="int" resultMap="boardMap">
+  <select id="findAll" parameterType="board" resultMap="boardMap">
     select
       b.board_no,
       b.title,
@@ -39,7 +39,12 @@
     from
       ps_board b inner join ps_member m on b.writer=m.member_no
     where
-      category=#{categoryNo}
+      case when #{searchKeyword} is null or #{searchKeyword} = '' then category=#{category} 
+           else category=#{category} and 
+                                      case when #{searchType} = 'title' then title like concat('%', #{searchKeyword}, '%')
+                                          else content like concat('%', #{searchKeyword}, '%') 
+                                          end
+           end
     order by
       board_no desc
   </select>

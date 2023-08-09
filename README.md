@@ -1,11 +1,21 @@
 # 개인 프로젝트 - 학교 종합 정보 관리시스템 App의 Release Note
 
-## 0.56v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
+## 0.56-2v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
 - 업데이트 프로젝트
-  - app55-server -> app56-server
+  - app56-1-server -> app56-2-server
+- 업데이트 사항
+  - 기존 기능 유지 
+  - + α
+    - 로그인 표시 및 로그아웃 기능 구현
+    - 제목 및 내용으로 게시글 검색기능 구현
+
+
+## 0.56-1v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
+- 업데이트 프로젝트
+  - app55-server -> app56-1-server
 - 업데이트 사항
   - Java EE 기술명세를 구현한 ServletContainer(Tomcat)으로 서버 대체
-  - javax패키지의 Servlet API 사용하여 요청 응답 적용
+  - javax패키지의 Servlet API 사용하여 요청 및 응답 적용
   - 계정 권한에 따라 회원 및 게시글 추가, 변경, 삭제 가능하게 업데이트
   - 게시글, 자유게시글 화면 구분하여 렌더링되게 업데이트
    

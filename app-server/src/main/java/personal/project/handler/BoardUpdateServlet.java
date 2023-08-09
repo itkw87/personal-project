@@ -19,8 +19,6 @@ public class BoardUpdateServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    request.setCharacterEncoding("UTF-8");
-
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
 
     int category = Integer.parseInt(request.getParameter("category"));

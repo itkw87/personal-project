@@ -20,10 +20,11 @@ public class MySQLBoardDao implements BoardDao {
     sqlSession.insert("personal.project.dao.BoardDao.insert", board);
   }
 
+
   @Override
-  public List<Board> findAll(int category) {
+  public List<Board> findAll(Board board) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    return sqlSession.selectList("personal.project.dao.BoardDao.findAll", category);
+    return sqlSession.selectList("personal.project.dao.BoardDao.findAll", board);
   }
 
 

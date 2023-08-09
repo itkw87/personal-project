@@ -6,7 +6,7 @@ import personal.project.vo.Board;
 public interface BoardDao {
   void insert(Board board);
 
-  List<Board> findAll(int category);
+  List<Board> findAll(Board board);
 
   Board findBy(int category, int no);
 

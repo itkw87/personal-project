@@ -18,6 +18,8 @@ public class Board implements Serializable {
   private int viewCount;
   private Timestamp createdDate;
   private int category;
+  private String searchType;
+  private String searchKeyword;
 
   @Override
   public int hashCode() {
@@ -99,6 +101,30 @@ public class Board implements Serializable {
 
   public void setCategory(int category) {
     this.category = category;
+  }
+
+  public String getSearchType() {
+    return searchType;
+  }
+
+  public String getSearchKeyword() {
+    return searchKeyword;
+  }
+
+  public void setSearchType(String searchType) {
+    this.searchType = searchType;
+  }
+
+  public void setSearchKeyword(String searchKeyword) {
+    this.searchKeyword = searchKeyword;
+  }
+
+  @Override
+  public String toString() {
+    return "Board [no=" + no + ", title=" + title + ", content=" + content + ", writer=" + writer
+        + ", password=" + password + ", viewCount=" + viewCount + ", createdDate=" + createdDate
+        + ", category=" + category + ", searchType=" + searchType + ", searchKeyword="
+        + searchKeyword + "]";
   }
 }
 
