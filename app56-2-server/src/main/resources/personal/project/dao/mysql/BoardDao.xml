@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 어떤 인터페이스를 구현한 객체만 받을 것인지 해당 인터페이스가 위치한 패키지명과 인터페이스명 까지 적는다. -->
-<mapper namespace="personal.project.dao.BoardDao"> 
+<mapper namespace="personal.project.dao.FreeBoardDao">
 
   <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
   <resultMap type="board" id="boardMap">

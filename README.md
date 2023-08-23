@@ -1,5 +1,19 @@
 # 개인 프로젝트 - 학교 종합 정보 관리시스템 App의 Release Note
 
+## 0.56-3v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
+- 업데이트 프로젝트
+  - app56-2-server -> app56-3-server
+  - app56-1-common -> app56-3-common
+- 업데이트 사항
+  - 기존 기능 유지 
+  - + α
+    - Vo 객체 추가 및 변경
+      - SearchParam(검색용), Participant(강의 참여자 Table용) 추가 
+      - 기존의 Board -> LecBoard(강의게시판 Table용), FreeBoard(자유게시판 Table용)으로 분리 변경
+    - 기능 추가 및 변경
+      - DB (리)모델링 후 기존의 기본게시판 -> 강의 게시판 기능으로 변경 구현 (게시글 등록, 수정, 삭제, 제목 및 내용으로 검색)
+
+
 ## 0.56-2v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
 - 업데이트 프로젝트
   - app56-1-server -> app56-2-server
