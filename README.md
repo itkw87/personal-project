@@ -1,12 +1,27 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
-## 0.57v. 자유게시판 파일 업로드 기능 추가 - multipart/form-data POST 요청 파라미터 인코딩
-- 업데이트 프로젝트
-  - app56-3-server -> app57-server
-  - app57-3-common -> app57-common
+## 0.58v. 자유게시판 파일 업로드 기능 II - multipart/form-data POST 요청 파라미터 인코딩(Java Servlet API)
+- 업데이트 프로젝트 Directory 
+  - app57-server -> app58-server
 - 업데이트 사항
   - 기존 기능 유지
-  - + α
+  - +α
+    - Vo 객체 추가 및 변경
+      - 없음.
+    - 기능 추가 및 변경 
+      - 자유게시판에서 게시글 등록시 파일 첨부 기능하여 등록 가능(여러파일 등록가능)하게 기능 구현
+      - 자유게시판에서 게시글 상세보기시 첨부된 파일을 항목별로 삭제 가능하게 기능 구현
+      - 자유게시판에서 게시글 상세보기시 첨부파일만 수정하여 업데이트 가능하게 기능 구현
+      - 기능 자체는 이전과 같으나 이전과 달리 Java Servlet API를 사용하여 파일 업로드가 가능하도록 코드를 변경하였음.
+
+
+## 0.57v. 자유게시판 파일 업로드 기능 I - multipart/form-data POST 요청 파라미터 인코딩(Apache Commons FileUpload)
+- 업데이트 프로젝트 Directory
+  - app56-3-server -> app57-server
+  - app56-3-common -> app57-common
+- 업데이트 사항
+  - 기존 기능 유지
+  - +α
     - Vo 객체 추가 및 변경
       - 없음.
     - 기능 추가 및 변경
@@ -14,17 +29,14 @@
       - 자유게시판에서 게시글 상세보기시 첨부된 파일을 항목별로 삭제 가능하게 기능 구현
       - 자유게시판에서 게시글 상세보기시 첨부파일만 수정하여 업데이트 가능하게 기능 구현
 
-- apache.org의 라이브러리를 이용하여 multipart/form-data 파라미터를 다루는 방법
-- 네이버클라우드 mysql DBMS 사용하기
-
 
 ## 0.56.3v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app56-2-server -> app56-3-server
   - app56-1-common -> app56-3-common
 - 업데이트 사항
   - 기존 기능 유지
-  - + α
+  - +α
     - Vo 객체 추가 및 변경
       - SearchParam(검색용), Participant(강의 참여자 Table용) 추가
       - 기존의 Board -> LecBoard(강의게시판 Table용), FreeBoard(자유게시판 Table용)으로 분리 변경
@@ -33,12 +45,12 @@
 
 
 ## 0.56.3v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app56-2-server -> app56-3-server
   - app56-1-common -> app56-3-common
 - 업데이트 사항
   - 기존 기능 유지 
-  - + α
+  - +α
     - Vo 객체 추가 및 변경
       - SearchParam(검색용), Participant(강의 참여자 Table용) 추가 
       - 기존의 Board -> LecBoard(강의게시판 Table용), FreeBoard(자유게시판 Table용)으로 분리 변경
@@ -47,7 +59,7 @@
 
 
 ## 0.56.2v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app56-1-server -> app56-2-server
 - 업데이트 사항
   - 기존 기능 유지 
@@ -57,7 +69,7 @@
 
 
 ## 0.56.1v 웹 애플리케이션 자바 표준 기술 JavaEE 도입
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app55-server -> app56-1-server
 - 업데이트 사항
   - Java EE 기술명세를 구현한 ServletContainer(Tomcat)으로 서버 대체
@@ -67,7 +79,7 @@
    
 
 ## 0.55v. 웹 애플리케이션 서버 구조로 전환하기 - 웹 기술 도입
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app54-server -> app55-server 
 - 업데이트 사항
   - 웹 기술을 도입하여 애플리케이션 서버 / 클라이언트를 구축 
@@ -76,21 +88,21 @@
   - 로그인과 권한인증에 쿠키와 세션 적용
 
 ## 0.54v. IoC 컨테이너 적용하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app53-server -> app54-server 
 - 업데이트 사항
   - IOC 컨테이너를 구현하여 기존의 SqlSessionFactory구현체, DAO객체들, ActionListener 구현체들을 IoC 컨테이너로 생성 및 관리하기
 
 
 ## 0.53v. 리스너 객체에 GoF Facade 패턴 적용하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app52-server -> app53-server 
 - 업데이트 사항
   - ActionListener 인터페이스 구현체 실행시 Facade 객체를 통해 결합도↓ 유지보수 용이성 및 유연성↑
 
 
 ## 0.52v. 기존에 직접 JDBC API로 작성한 코드 -> Mybatis 프레임워크 사용해 교체하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app51-server -> app52-server 
   - app51-common -> app52-common
 - 업데이트 사항
@@ -99,7 +111,7 @@
 
 
 ## 0.51v. DB 커넥션 풀을 이용한 Connection객체 재사용 기능 구현하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app-server프로젝트 폴더 업데이트 후 app51-server 폴더로 백업
 - 업데이트 사항
   - 각 스레드내에서만 유효한 ThreadLocal객체 사용하여 해당 스레드 전용 Connection객체 보관하고 꺼내기 
@@ -108,7 +120,7 @@
 
 
 ## 0.50v. Application Server 아키텍처로 전환하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app-server, app-client, app-common프로젝트 폴더 업데이트 후 app50-server, app50-client, app50-common 폴더로 백업
 - 업데이트 사항
   - Clinet/Server 아키텍처 -> Application Server 아키텍처로 구조 변경하기
@@ -116,14 +128,14 @@
 
 
 ## 0.49v. 로그인 적용하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app-client, app-common프로젝트 폴더 업데이트 후 app49-client, app49-common 폴더로 백업
 - 업데이트 사항
   - 간단한 로그인 구현 및 로그인 데이터로 메뉴 기능 다루기
 
 
 ## 0.48v. 외부키(Foreign Key) 사용하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app-client, app-common프로젝트 폴더 업데이트 후 app48-client, app48-common 폴더로 백업
 - 업데이트 사항
   - 테이블 구조 변경(외부키 적용 및 사용) => Member테이블의 PK를 Board테이블의 FK로 사용 
@@ -131,7 +143,7 @@
 
 
 ## 0.47v. SQL 삽입 공격 차단하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app-client프로젝트 폴더 업데이트 후 app47-client 폴더로 백업
 - 업데이트 사항
   - Statement객체 사용시 취약점을 파악하고 PreparedStatment객체로 대체
@@ -139,7 +151,7 @@
 
 
 ## 0.46v. DBMS 도입하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app-client, app-common프로젝트 폴더 업데이트 후 app46-client, app46-common 폴더로 백업
 
 - 업데이트 사항
@@ -147,7 +159,7 @@
 
 
 ## 0.45v. 직접 구현했던 스레드풀(thread pool) 자바에서 제공하는 thread pool로 대체하여 적용하기
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app-server프로젝트 폴더 업데이트 후 app45-server 폴더로 백업
 
 - 업데이트 사항
@@ -155,7 +167,7 @@
 
 
 ## 0.44v. 스레드풀(thread pool) 구현하여 스레드 재사용 기능 추가
-- 업데이트 프로젝트
+- 업데이트 프로젝트 Directory
   - app-server프로젝트 폴더 업데이트 후 app44-server 폴더로 백업
 
 - 업데이트 사항

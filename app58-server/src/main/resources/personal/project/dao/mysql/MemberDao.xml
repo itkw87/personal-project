@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="personal.project.dao.MemberDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="member" id="memberMap">
+    <id     column="member_no"       property="memberNo"/>
+    <result column="member_code"          property="memberCode"/>
+    <result column="member_id"        property="memberId"/>
+    <result column="member_pwd"     property="memberPwd"/>
+    <result column="member_name"     property="memberName"/>
+    <result column="member_email"       property="memberEmail"/>
+    <result column="member_gender"       property="memberGender"/>
+    <result column="member_tel"   property="memberTel"/>
+    <result column="member_zipcode"   property="memberZipcode"/>
+    <result column="member_addr"   property="memberAddr"/>
+    <result column="member_detail_addr"   property="memberDetailAddr"/>
+    <result column="member_date"   property="memberDate"/>
+    <result column="member_status"   property="memberStatus"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="member">
+  insert 
+      into task_member(member_code, member_id, member_pwd, member_name, member_email, member_gender, member_tel, member_zipcode, member_addr, member_detail_addr)
+      values(#{memberCode},#{memberId},sha1(#{memberPwd}),#{memberName},#{memberEmail},#{memberGender},#{memberTel},#{memberZipcode},#{memberAddr},#{memberDetailAddr})
+  </insert>
+  
+  <select id="findAll" resultMap="memberMap">
+    select
+      member_no,
+      member_code,
+      member_id,
+      member_pwd,
+      member_name,
+      member_email,
+      member_tel,
+      member_zipcode,
+      member_addr,
+      member_detail_addr,
+      member_date,
+      member_status
+    from task_member
+    order by member_no asc
+  </select>
+
+  <select id="findBy" parameterType="int" resultMap="memberMap">
+    select
+    member_no,
+    member_code,
+    member_id,
+    member_pwd,
+    member_name,
+    member_email,
+    member_tel,
+    member_zipcode,
+    member_addr,
+    member_detail_addr,
+    member_date,
+    member_status
+    from task_member
+    where member_no=#{memberNo}
+  </select>
+
+
+  <select id="findByEmailAndPassword" parameterType="member" resultMap="memberMap">
+    select
+      member_no,
+      member_code,
+      member_id,
+      member_pwd,
+      member_name,
+      member_email,
+      member_tel,
+      member_zipcode,
+      member_addr,
+      member_detail_addr,
+      member_date,
+      member_status
+    from task_member
+    where
+       member_id=#{memberId} and 
+       member_pwd =sha1(#{memberPwd})
+  </select>
+  
+  <update id="update" parameterType="member">
+    update task_member
+      set member_name=#{memberName},
+          member_email=#{memberEmail},
+          member_pwd=sha1(#{memberPwd}),
+          member_gender=#{memberGender},
+          member_tel=#{memberTel},
+          member_zipcode=#{memberZipcode},
+          member_addr=#{memberAddr},
+          member_detail_addr=#{memberDetailAddr}
+      where member_no=#{memberNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete 
+      from task_member
+      where member_no=#{memberNo}
+  </delete>
+</mapper>
+
+
+
+
+
