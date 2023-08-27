@@ -67,7 +67,7 @@ public class FreeBoardDetailServlet extends HttpServlet {
 
         for (AttachedFile file : fileList) {
           if(file.getFileNo() != 0) {
-          out.printf("<a href='/upload/freeBoard/%s'>%s</a>"
+          out.printf("<a href='https://kr.object.ncloudstorage.com/bitcamp-nc7-bucket-03/personal/freeBoard/%s'>%s</a>"
                   + " [<a href='/freeBoard/file/delete?fileNo=%d'>삭제</a>]"
                   + "<br>\n", file.getSaveFileName(), file.getOriginFileName(), file.getFileNo());
           }

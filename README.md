@@ -1,11 +1,29 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## 0.60v. 첨부파일을 Naver Coloud Storage Service에 저장하기
+- 업데이트 프로젝트 Directory
+  - app59-server -> app60-server
+- 업데이트 사항
+    - 코드 추가 및 변경
+      - NcpConfig 클래스, NcpObjectStorageService 클랙스 선언 
+    - 기능 추가 및 변경
+      - 기존에 로컬에 보관하던 자유게시글의 첨부파일을 NaverColoudStorage에 보관하게 변경
+
+
 ## 0.59v. 서블릿 컨테이너 삽입 (Embedded Tomcat 간단하게 구현)
 - 업데이트 프로젝트 Directory
   - app58-server -> app59-server
 - 업데이트 사항
-  - 기존 기능 유지
-  - +α
+    - Vo 객체 추가 및 변경
+      - 없음.
+    - 기능 추가 및 변경
+      - personal.project.App 클래스에 Embedded Tomcat 코드 작성
+
+
+## 0.59v. 서블릿 컨테이너 삽입 (Embedded Tomcat 간단하게 구현)
+- 업데이트 프로젝트 Directory
+  - app58-server -> app59-server
+- 업데이트 사항
     - Vo 객체 추가 및 변경
       - 없음.
     - 기능 추가 및 변경
@@ -15,8 +33,6 @@
 - 업데이트 프로젝트 Directory 
   - app57-server -> app58-server
 - 업데이트 사항
-  - 기존 기능 유지
-  - +α
     - Vo 객체 추가 및 변경
       - 없음.
     - 기능 추가 및 변경 
@@ -31,8 +47,6 @@
   - app56-3-server -> app57-server
   - app56-3-common -> app57-common
 - 업데이트 사항
-  - 기존 기능 유지
-  - +α
     - Vo 객체 추가 및 변경
       - 없음.
     - 기능 추가 및 변경
@@ -46,8 +60,6 @@
   - app56-2-server -> app56-3-server
   - app56-1-common -> app56-3-common
 - 업데이트 사항
-  - 기존 기능 유지
-  - +α
     - Vo 객체 추가 및 변경
       - SearchParam(검색용), Participant(강의 참여자 Table용) 추가
       - 기존의 Board -> LecBoard(강의게시판 Table용), FreeBoard(자유게시판 Table용)으로 분리 변경
@@ -60,8 +72,6 @@
   - app56-2-server -> app56-3-server
   - app56-1-common -> app56-3-common
 - 업데이트 사항
-  - 기존 기능 유지 
-  - +α
     - Vo 객체 추가 및 변경
       - SearchParam(검색용), Participant(강의 참여자 Table용) 추가 
       - 기존의 Board -> LecBoard(강의게시판 Table용), FreeBoard(자유게시판 Table용)으로 분리 변경
@@ -73,8 +83,6 @@
 - 업데이트 프로젝트 Directory
   - app56-1-server -> app56-2-server
 - 업데이트 사항
-  - 기존 기능 유지 
-  - + α
     - 로그인 표시 및 로그아웃 기능 구현
     - 제목 및 내용으로 게시글 검색기능 구현
 

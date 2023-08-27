@@ -57,21 +57,12 @@ public class FreeBoardUpdateServlet extends HttpServlet {
       freeBoard.setFreeTitle(request.getParameter("freeTitle"));
       freeBoard.setFreeContent(request.getParameter("freeContent"));
 
-      String uploadDir = request.getServletContext().getRealPath("/upload/freeBoard/");
       ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
-
       // 각각의 파트에서 값을 꺼낸다.
       for (Part part : request.getParts()) {
         if (part.getName().equals("files") && part.getSize() > 0) {
-          String originFileName = part.getSubmittedFileName();
-          String saveFileName = UUID.randomUUID().toString();
-
-          part.write(uploadDir + saveFileName);
-
-          AttachedFile attachedFile = new AttachedFile();
-          attachedFile.setFilePath(uploadDir);
-          attachedFile.setOriginFileName(originFileName);
-          attachedFile.setSaveFileName(saveFileName);
+          AttachedFile attachedFile = InitServlet.ncpObjectStorageService.uploadFile(new AttachedFile(),
+                  "bitcamp-nc7-bucket-03", "personal/freeBoard/", part);
           attachedFiles.add(attachedFile);
         }
       }
@@ -81,7 +72,6 @@ public class FreeBoardUpdateServlet extends HttpServlet {
         out.println("<p>게시글 변경 권한이 없습니다.</p>");
       } else {
         if (freeBoard.getAttachedFiles().size() > 0) {
-          // 게시글을 정상적으로 변경했으면, 그 게시글의 첨부파일을 추가한다.
           int count = InitServlet.freeBoardDao.insertFiles(freeBoard);
         }
         out.println("<p>변경했습니다!</p>");

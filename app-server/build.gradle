@@ -42,6 +42,9 @@ dependencies {
     // 임베디드 Tomcat 서버
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.79'
 
+    // Amazon Aws Java SDK s3
+    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.538'
+
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
     implementation 'com.google.guava:guava:31.1-jre'
 }

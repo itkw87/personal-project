@@ -44,21 +44,12 @@ public class FreeBoardAddServlet extends HttpServlet {
       freeBoard.setFreeTitle(request.getParameter("freeTitle"));
       freeBoard.setFreeContent(request.getParameter("freeContent"));
 
-      String uploadDir = request.getServletContext().getRealPath("/upload/freeBoard/");
       ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
-
       // 각각의 파트에서 값을 꺼낸다.
       for (Part part : request.getParts()) {
         if (part.getName().equals("files") && part.getSize() > 0) {
-          String originFileName = part.getSubmittedFileName();
-          String saveFileName = UUID.randomUUID().toString();
-
-          part.write(uploadDir + saveFileName);
-
-          AttachedFile attachedFile = new AttachedFile();
-          attachedFile.setFilePath(uploadDir);
-          attachedFile.setOriginFileName(originFileName);
-          attachedFile.setSaveFileName(saveFileName);
+          AttachedFile attachedFile = InitServlet.ncpObjectStorageService.uploadFile(new AttachedFile(),
+                  "bitcamp-nc7-bucket-03", "personal/freeBoard/", part);
           attachedFiles.add(attachedFile);
         }
       }
