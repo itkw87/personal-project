@@ -34,7 +34,7 @@ public class MemberAddServlet extends HttpServlet {
     m.setMemberTel(request.getParameter("memberTel"));
     m.setMemberZipcode(request.getParameter("memberZipCode"));
     m.setMemberAddr(request.getParameter("memberAddr"));
-    m.setMemberDetailAddr(request.getParameter("memberetailAddr"));
+    m.setMemberDetailAddr(request.getParameter("memberdetailAddr"));
 
     Part photoPart = request.getPart("memberPhoto");
     if (photoPart.getSize() > 0) {

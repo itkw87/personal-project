@@ -1,5 +1,20 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## 0.62v. forward/include/refresh/redirect 적용
+- 업데이트 프로젝트 Directory
+  - app61-server -> app62-server
+- 업데이트 사항
+  - 추가한 라이브러리
+    - 없음.
+  - Vo 객체 추가 및 변경
+    - 없음.
+  - 기능 추가 및 변경
+    - include 를 이용하여 Header페이지와 Footer페이지 모든 페이지가 포함하게 함.
+    - 에러 발생시 에러 페이지로 요청을 forward 위임하여 ErrorSerlvet에서 하나의 에러 폼을 가지고 동적으로 페이지 출력되게 함.
+    - redirect를 이용하여 다른 페이지로 이동하게 함.
+    - refresh를 이용하여 페이지 새로고침 구현함.
+    
+
 ## 0.61v. 네이버 클라우드의 Image Optimizer를 이용하여 회원 사진 썸네일 적용하기
 - 업데이트 프로젝트 Directory
   - app60-common -> app61-common
@@ -7,11 +22,12 @@
 - 업데이트 사항
   - 추가한 라이브러리
     - lombok 적용하여 setter, getter, toString 소스 코드 생략
-  - 객체 추가 및 변경
+  - Vo 객체 추가 및 변경
     - app60-common 프로젝트의 Member vo 객체에 memberPhoto필드 추가 
   - 기능 추가 및 변경
     - 네이버 클라우드의 Image Optimizer를 이용하여 회원사진 최적화
     - 회원 정보 보기와 회원 목록 보기시 각각 다른 크기의 이미지 크기로 Optimizing된 이미지 로드 
+
 
 ## 0.60v. 첨부파일을 Naver Coloud Storage Service에 저장하기
 - 업데이트 프로젝트 Directory

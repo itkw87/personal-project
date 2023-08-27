@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 어떤 인터페이스를 구현한 객체만 받을 것인지 해당 인터페이스가 위치한 패키지명과 인터페이스명 까지 적는다. -->
+<mapper namespace="personal.project.dao.FreeBoardDao">
+
+    <resultMap type="freeBoard" id="freeBoardMap">
+        <id column="free_board_no" property="freeBoardNo"/>
+        <result column="free_title" property="freeTitle"/>
+        <result column="free_content" property="freeContent"/>
+        <result column="free_view_count" property="freeViewCount"/>
+        <result column="free_reg_date" property="freeRegDate"/>
+        <result column="free_mdf_date" property="freeMdfDate"/>
+        <result column="free_status" property="freeStatus"/>
+
+        <association property="freeWriter" javaType="member">
+            <id column="member_no" property="memberNo"/>
+            <result column="member_name" property="memberName"/>
+        </association>
+
+        <collection property="attachedFiles" ofType="attachedFile">
+            <id column="file_no" property="fileNo"/>
+            <result column="free_board_no" property="freeBoardNo"/>
+            <result column="file_path" property="filePath"/>
+            <result column="origin_filename" property="originFileName"/>
+            <result column="save_filename" property="saveFileName"/>
+        </collection>
+    </resultMap>
+
+    <resultMap type="attachedFile" id="attachedFileMap">
+        <id column="file_no" property="fileNo"/>
+        <result column="free_board_no" property="freeBoardNo"/>
+        <result column="file_path" property="filePath"/>
+        <result column="origin_filename" property="originFileName"/>
+        <result column="save_filename" property="saveFileName"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="freeBoard"
+            useGeneratedKeys="true" keyColumn="free_board_no" keyProperty="freeBoardNo">
+        insert into task_free_board
+        (free_title
+        ,free_content
+        , free_writer
+        , free_view_count)
+        values(#{freeTitle}
+        ,#{freeContent}
+        ,#{freeWriter.memberNo}
+        ,#{freeViewCount})
+    </insert>
+
+    <select id="findAll" parameterType="freeBoard" resultMap="freeBoardMap">
+        select
+        f.free_board_no,
+        f.free_title,
+        m.member_no,
+        m.member_name,
+        f.free_content,
+        f.free_view_count,
+        f.free_reg_date,
+        f.free_mdf_date,
+        f.free_status
+        from
+        task_free_board f inner join task_member m on f.free_writer = m.member_no
+        where
+        case when #{searchParam.searchKeyword} is not null
+        then
+        case when
+        #{searchParam.searchType} = 'free_title'
+        then free_title like concat('%', #{searchParam.searchKeyword}, '%')
+        else free_content like concat('%', #{searchParam.searchKeyword}, '%')
+        end
+        end
+        order by
+        free_board_no desc
+    </select>
+
+    <select id="findBy" parameterType="int" resultMap="freeBoardMap">
+        select
+        fb.free_board_no
+        ,fb.free_title
+        ,fb.free_content
+        ,m.member_no
+        ,m.member_name
+        ,fb.free_view_count
+        ,fb.free_reg_date
+        ,fb.free_mdf_date
+        ,fb.free_status
+        ,a.file_no
+        ,a.free_board_no
+        ,a.file_path
+        ,a.origin_filename
+        ,a.save_filename
+        from task_free_board fb
+        inner join task_member m on fb.free_writer=m.member_no
+        left outer join task_board_attach_file a on fb.free_board_no = a.free_board_no
+        where fb.free_board_no=#{freeBoardNo}
+    </select>
+
+    <update id="update" parameterType="freeBoard">
+        update task_free_board set
+        free_title=#{freeTitle}
+        ,free_content=#{freeContent}
+        ,free_mdf_date=now()
+        where
+        free_board_no=#{freeBoardNo}
+        and free_writer=#{freeWriter.memberNo}
+    </update>
+
+    <update id="updateCount" parameterType="freeBoard">
+        update task_free_board set
+        free_view_count=#{freeViewCount}
+        where free_board_no=#{freeBoardNo}
+    </update>
+
+    <delete id="delete" parameterType="freeBoard">
+        delete from task_free_board
+        where free_board_no=#{freeBoardNo}
+        and free_writer=#{freeWriter.memberNo}
+    </delete>
+
+
+    <insert id="insertFiles" parameterType="freeBoard">
+        insert into task_board_attach_file(free_board_no
+        , file_path
+        , origin_filename
+        , save_filename)
+        values
+        <foreach collection="attachedFiles" item="file" separator=",">
+            (#{freeBoardNo}, #{file.filePath}, #{file.originFileName}, #{file.saveFileName})
+        </foreach>
+    </insert>
+
+    <select id="findFileBy" parameterType="int" resultMap="attachedFileMap">
+        select file_no
+        ,free_board_no
+        ,file_path
+        ,origin_filename
+        ,save_filename
+        from
+        task_board_attach_file
+        where
+        file_no=#{fileNo}
+    </select>
+
+    <delete id="deleteFile" parameterType="int">
+        delete from task_board_attach_file
+        where
+        file_no=#{fileNo}
+    </delete>
+</mapper>
+
+
+
+
+
