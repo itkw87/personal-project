@@ -469,7 +469,7 @@ gradle-app.setting
 *.hprof
 
 # .properties 파일 무시
-#*.properties
+*.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,c++,visualstudiocode,windows,intellij,eclipse,gradle,maven,node
 

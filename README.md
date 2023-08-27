@@ -1,5 +1,16 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## 0.59v. 서블릿 컨테이너 삽입 (Embedded Tomcat 간단하게 구현)
+- 업데이트 프로젝트 Directory
+  - app58-server -> app59-server
+- 업데이트 사항
+  - 기존 기능 유지
+  - +α
+    - Vo 객체 추가 및 변경
+      - 없음.
+    - 기능 추가 및 변경
+      - personal.project.App 클래스에 Embedded Tomcat 코드 작성
+    
 ## 0.58v. 자유게시판 파일 업로드 기능 II - multipart/form-data POST 요청 파라미터 인코딩(Java Servlet API)
 - 업데이트 프로젝트 Directory 
   - app57-server -> app58-server
