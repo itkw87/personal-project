@@ -1,5 +1,18 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## 0.61v. 네이버 클라우드의 Image Optimizer를 이용하여 회원 사진 썸네일 적용하기
+- 업데이트 프로젝트 Directory
+  - app60-common -> app61-common
+  - app60-server -> app61-server
+- 업데이트 사항
+  - 추가한 라이브러리
+    - lombok 적용하여 setter, getter, toString 소스 코드 생략
+  - 객체 추가 및 변경
+    - app60-common 프로젝트의 Member vo 객체에 memberPhoto필드 추가 
+  - 기능 추가 및 변경
+    - 네이버 클라우드의 Image Optimizer를 이용하여 회원사진 최적화
+    - 회원 정보 보기와 회원 목록 보기시 각각 다른 크기의 이미지 크기로 Optimizing된 이미지 로드 
+
 ## 0.60v. 첨부파일을 Naver Coloud Storage Service에 저장하기
 - 업데이트 프로젝트 Directory
   - app59-server -> app60-server
