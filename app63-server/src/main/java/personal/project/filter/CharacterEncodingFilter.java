@@ -1,0 +1,22 @@
+package personal.project.filter;
+
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+
+@WebFilter("/*") // 모든 요청에 대해 필터 수행
+public class CharacterEncodingFilter implements Filter {
+  @Override
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+      throws IOException, ServletException {
+    // 체인에 연결된 다음 작업(필터 또는 서블릿 실행)을 수행하기 전에 해야 할 일
+    request.setCharacterEncoding("UTF-8");
+
+    // 다음 작업(필터 또는 서블릿)을 실행
+    chain.doFilter(request, response);
+  }
+}

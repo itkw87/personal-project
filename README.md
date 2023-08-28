@@ -1,5 +1,18 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## 0.63v. 쿠키와 ServletContext 보관소 활용
+- 업데이트 프로젝트 Directory
+  - app62-server -> app63-server
+- 업데이트 사항
+  - 추가한 라이브러리
+    - 없음.
+  - Vo 객체 추가 및 변경
+    - 없음.
+  - 기능 추가 및 변경
+    - 쿠키 활용하여 로그인시 아이디 저장 옵션에 체크시 다음 번 로그인 시에는 쿠키에 저장된 아이디를 자동로드하게 구현 
+    - 웹 애플리케이션 실행시 필요한 객체들을 기존 InitServlet에서 준비하던 것을 mybatis-config.xml 파일을 web.xml의 context-param으로 등록 후 ContextLoaderListener객체에서 ServletContext 보관소를 활용하여 애플리케이션 실행시 생성 및 준비
+
+
 ## 0.62v. forward/include/refresh/redirect 적용
 - 업데이트 프로젝트 Directory
   - app61-server -> app62-server
