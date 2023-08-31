@@ -1,12 +1,25 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+
+## 0.64v. JSP를 이용하여 MVC 모델1 구조로 변경하기
+- 업데이트 프로젝트 Directory
+  - app63-server -> app64-server
+  - app63-common -> app64-common
+- 업데이트 사항
+  - 추가한 라이브러리
+    - jstl1.2
+  - 객체 추가 및 변경
+    - Member와 FreeBoard(자유게시판)관련 Servlet클래스 모두 jsp 파일로 대체(jsp파일로 프론트 뿐만 아니라 JSTL과 스크립틀릿으로 자바코드도 대체[MVC 모델1 구조])
+  - 기능 추가 및 변경
+    - 기능은 이전과 동일하나 Member(회원)와 FreeBoard(자유게시판) 관련 구조만 MVC 모델1구조로 변경
+
 ## 0.63v. 쿠키와 ServletContext 보관소 활용
 - 업데이트 프로젝트 Directory
   - app62-server -> app63-server
 - 업데이트 사항
   - 추가한 라이브러리
     - 없음.
-  - Vo 객체 추가 및 변경
+  - 객체 추가 및 변경
     - 없음.
   - 기능 추가 및 변경
     - 쿠키 활용하여 로그인시 아이디 저장 옵션에 체크시 다음 번 로그인 시에는 쿠키에 저장된 아이디를 자동로드하게 구현 
@@ -19,7 +32,7 @@
 - 업데이트 사항
   - 추가한 라이브러리
     - 없음.
-  - Vo 객체 추가 및 변경
+  - 객체 추가 및 변경
     - 없음.
   - 기능 추가 및 변경
     - include 를 이용하여 Header페이지와 Footer페이지 모든 페이지가 포함하게 함.
@@ -35,7 +48,7 @@
 - 업데이트 사항
   - 추가한 라이브러리
     - lombok 적용하여 setter, getter, toString 소스 코드 생략
-  - Vo 객체 추가 및 변경
+  - 객체 추가 및 변경
     - app60-common 프로젝트의 Member vo 객체에 memberPhoto필드 추가 
   - 기능 추가 및 변경
     - 네이버 클라우드의 Image Optimizer를 이용하여 회원사진 최적화
@@ -46,7 +59,7 @@
 - 업데이트 프로젝트 Directory
   - app59-server -> app60-server
 - 업데이트 사항
-    - 코드 추가 및 변경
+    - 객체 추가 및 변경
       - NcpConfig 클래스, NcpObjectStorageService 클랙스 선언 
     - 기능 추가 및 변경
       - 기존에 로컬에 보관하던 자유게시글의 첨부파일을 NaverColoudStorage에 보관하게 변경
@@ -56,7 +69,7 @@
 - 업데이트 프로젝트 Directory
   - app58-server -> app59-server
 - 업데이트 사항
-    - Vo 객체 추가 및 변경
+    - 객체 추가 및 변경
       - 없음.
     - 기능 추가 및 변경
       - personal.project.App 클래스에 Embedded Tomcat 코드 작성
@@ -66,7 +79,7 @@
 - 업데이트 프로젝트 Directory
   - app58-server -> app59-server
 - 업데이트 사항
-    - Vo 객체 추가 및 변경
+    - 객체 추가 및 변경
       - 없음.
     - 기능 추가 및 변경
       - personal.project.App 클래스에 Embedded Tomcat 코드 작성
@@ -75,7 +88,7 @@
 - 업데이트 프로젝트 Directory 
   - app57-server -> app58-server
 - 업데이트 사항
-    - Vo 객체 추가 및 변경
+    - 객체 추가 및 변경
       - 없음.
     - 기능 추가 및 변경 
       - 자유게시판에서 게시글 등록시 파일 첨부 기능하여 등록 가능(여러파일 등록가능)하게 기능 구현
@@ -89,7 +102,7 @@
   - app56-3-server -> app57-server
   - app56-3-common -> app57-common
 - 업데이트 사항
-    - Vo 객체 추가 및 변경
+    - 객체 추가 및 변경
       - 없음.
     - 기능 추가 및 변경
       - 자유게시판에서 게시글 등록시 파일 첨부 기능하여 등록 가능(여러파일 등록가능)하게 기능 구현
@@ -102,7 +115,7 @@
   - app56-2-server -> app56-3-server
   - app56-1-common -> app56-3-common
 - 업데이트 사항
-    - Vo 객체 추가 및 변경
+    - 객체 추가 및 변경
       - SearchParam(검색용), Participant(강의 참여자 Table용) 추가
       - 기존의 Board -> LecBoard(강의게시판 Table용), FreeBoard(자유게시판 Table용)으로 분리 변경
     - 기능 추가 및 변경
@@ -114,7 +127,7 @@
   - app56-2-server -> app56-3-server
   - app56-1-common -> app56-3-common
 - 업데이트 사항
-    - Vo 객체 추가 및 변경
+    - 객체 추가 및 변경
       - SearchParam(검색용), Participant(강의 참여자 Table용) 추가 
       - 기존의 Board -> LecBoard(강의게시판 Table용), FreeBoard(자유게시판 Table용)으로 분리 변경
     - 기능 추가 및 변경
