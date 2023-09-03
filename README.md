@@ -1,5 +1,16 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## 0.65. JSP를 이용하여 MVC 모델2 구조로 변경하기
+- 업데이트 프로젝트 Directory
+  - app64-server -> app65-server
+- 업데이트 사항
+  - 추가한 라이브러리
+    - 없음.
+  - 객체 추가 및 변경
+    - Member(회원)와 FreeBoard(자유게시판)에서 데이터 조회 및 가공의 역할을 하던 jsp파일 내 코드들을 모두 Controller이름을 가진 Servlet => 자바 소스 파일로 변경
+  - 기능 추가 및 변경
+    - 기능은 이전과 동일하나 Member(회원)와 FreeBoard(자유게시판) 관련 구조만 MVC 모델2구조로 변경
+
 
 ## 0.64v. JSP를 이용하여 MVC 모델1 구조로 변경하기
 - 업데이트 프로젝트 Directory
@@ -12,6 +23,7 @@
     - Member와 FreeBoard(자유게시판)관련 Servlet클래스 모두 jsp 파일로 대체(jsp파일로 프론트 뿐만 아니라 JSTL과 스크립틀릿으로 자바코드도 대체[MVC 모델1 구조])
   - 기능 추가 및 변경
     - 기능은 이전과 동일하나 Member(회원)와 FreeBoard(자유게시판) 관련 구조만 MVC 모델1구조로 변경
+
 
 ## 0.63v. 쿠키와 ServletContext 보관소 활용
 - 업데이트 프로젝트 Directory

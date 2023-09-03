@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 어떤 인터페이스를 구현한 객체만 받을 것인지 해당 인터페이스가 위치한 패키지명과 인터페이스명 까지 적는다. -->
+<mapper namespace="personal.project.dao.LecBoardDao">
+
+  <resultMap type="lecBoard" id="lecBoardMap">
+    <id     column="lec_board_no"       property="lecBoardNo"/>
+    <result column="lecture_no"          property="lectureNo"/>
+    <result column="lec_title"          property="lecTitle"/>
+    <result column="lec_content"        property="lecContent"/>
+    <result column="lec_view_count"   property="lecViewCount"/>
+    <result column="lec_reg_date"       property="lecRegDate"/>
+    <result column="lec_mdf_date"       property="lecMdfDate"/>
+    <result column="lec_status"       property="lecStatus"/>
+
+    <association property="lecWriter" javaType="member">
+      <id     column="member_no"    property="memberNo"/>
+      <result column="member_name"         property="memberName"/>
+    </association>
+  </resultMap>
+
+  <insert id="insert" parameterType="lecBoard">
+    insert into task_lec_board
+            (lecture_no
+            ,lec_title
+            ,lec_content
+            , lec_writer
+            , lec_view_count)
+    values(#{lectureNo}
+            ,#{lecTitle}
+            ,#{lecContent}
+            ,#{lecWriter.memberNo}
+            ,#{lecViewCount})
+  </insert>
+
+  <select id="findAll" parameterType="lecBoard" resultMap="lecBoardMap">
+    select
+      f.lec_board_no,
+      f.lec_title,
+      m.member_no,
+      m.member_name,
+      f.lec_content,
+      f.lec_view_count,
+      f.lec_reg_date,
+      f.lec_mdf_date,
+      f.lec_status
+    from
+    task_lec_board f inner join task_member m on f.lec_writer = m.member_no
+    where
+      case when #{searchParam.searchKeyword} is not null
+           then
+               case when
+                         #{searchParam.searchType} = 'lec_title'
+                    then lec_title like concat('%', #{searchParam.searchKeyword}, '%')
+                    else lec_content like concat('%', #{searchParam.searchKeyword}, '%')
+               end
+      end
+    order by
+    lec_board_no desc
+  </select>
+
+  <select id="findBy" parameterType="lecBoard" resultMap="lecBoardMap">
+    select
+      fb.lec_board_no,
+      fb.lec_title,
+      fb.lec_content,
+      m.member_no,
+      m.member_name,
+      fb.lec_view_count,
+      fb.lec_reg_date,
+      fb.lec_mdf_date,
+      fb.lec_status
+    from
+      task_lec_board fb inner join task_member m on fb.lec_writer=m.member_no
+    where fb.lec_board_no=#{lecBoardNo}
+  </select>
+
+  <update id="update" parameterType="lecBoard">
+    update task_lec_board set
+    lec_title=#{lecTitle}
+    ,lec_content=#{lecContent}
+    ,lec_mdf_date=now()
+    where
+      lec_board_no=#{lecBoardNo}
+      and lec_writer=#{lecWriter.memberNo}
+  </update>
+
+  <update id="updateCount" parameterType="lecBoard">
+    update task_lec_board set
+    lec_view_count=#{lecViewCount}
+    where lec_board_no=#{lecBoardNo}
+  </update>
+
+  <delete id="delete" parameterType="lecBoard">
+    delete from task_lec_board
+    where lec_board_no=#{lecBoardNo}
+      and lec_writer=#{lecWriter.memberNo}
+  </delete>
+</mapper>
+
+
+
+
+
