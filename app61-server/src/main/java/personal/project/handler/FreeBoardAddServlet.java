@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;

@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import personal.util.Prompt;
 import personal.project.vo.Student;

@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import personal.project.dao.MemberDao;

@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import java.util.List;
 import personal.project.dao.StudentDao;

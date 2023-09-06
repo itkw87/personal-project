@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>학교 통합 정보 관리시스템</title>
+<style>
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
+nav {
+  position: fixed;
+  display: flex;
+  align-items: flex-start;
+  width: 20%;
+  height: 100%;
+  background-color: #111;
+}
+main {
+  position: fixed;
+  right: 0;
+  width: 80%;
+  height: 100%;
+  background-color: #fff;
+  overflow: auto;
+  padding: 40px;
+}
+h1 {
+  font-weight: bold;
+  margin-bottom: 50px;
+  font-size: 55px;
+  text-align: center;
+}
+p {
+  margin-bottom: 20px;
+  line-height: 26px;
+}
+p::first-letter {
+  font-size: 200%;
+  font-weight: bold;
+}
+li, ul label.title, ul, a {
+  width: 100%;
+  color: #FFF;
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  display: block;
+  font-weight: bold;
+}
+ul label {
+  height: 35px;
+}
+ul li{
+  height: 35px;
+  overflow: hidden;
+  transition: all .3s;
+}
+li {
+  display: block;
+  background-color: #363636;
+}
+label.title {
+  font-size: 14px;
+  background: linear-gradient(#111, #2f2f2f);
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all .25s;
+}
+a{
+  font-size: 12px;
+  text-decoration: none;
+  color: #FFF;
+  display: block;
+  padding: 10px 25px;
+  transition: all .25s;
+}
+a:hover {
+  background-color: #444;
+  box-shadow: inset 5px 0px 0px 0px #fff;
+}
+label:hover {
+  text-shadow: 0px 0px 10px #fff;
+}
+input[type="radio"] {
+  display: none;
+}
+#edit:checked + li, #archive:checked + li, #tools:checked + li, #preferences:checked + li {
+  height: 179px;
+}
+i {
+  margin-right: 12px;
+}
+@media screen and (max-width: 600px){
+  nav {
+    width: 100%;
+    position: relative;
+  }
+  main {
+    width: 100%;
+    position: relative;
+  }
+}
+
+/* 기존 스타일은 여기까지 */
+.login-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  padding: 10px 20px;
+}
+
+.login-bar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.login-bar a:hover {
+  color: #ddd;
+}
+</style>
+  <!-- jQuery CDN 연결 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <nav class="menu">
+      <ul>
+        <input type="radio" name="menu" id="archive" checked>
+        <li>
+          <label for="archive" class="title"><i class="fa fa-folder"></i>과제</label>
+          <a href="/subject/form">과목등록</a>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+        </li>
+        <input type="radio" name="menu" id="edit">
+        <li>
+          <label for="edit" class="title"><i class="fa fa-edit"></i>게시판</label>
+          <a href="/lectureBoard/list">강의게시판</a>
+          <a href="/freeBoard/list">자유게시판</a>
+          <a href="#">Paste</a>
+          <a href="#">Undo</a>
+        </li>
+        <input type="radio" name="menu" id="tools">
+        <li>
+          <label for="tools" class="title"><i class="fa fa-gavel"></i>회원정보</label>
+          <a href="#">Build</a>
+          <a href="#">Macros</a>
+          <a href="#">Command</a>
+          <a href="#">Snippets</a>
+        </li>
+        <input type="radio" name="menu" id="preferences">
+        <li>
+          <label for="preferences" class="title"><i class="fa fa-gears"></i>회원정보</label>
+          <a href="#">Browser</a>
+          <a href="#">Settings</a>
+          <a href="#">Packages</a>
+          <a href="#">Theme</a>
+        </li>
+      </ul>
+    </nav>
+    <main class="main">
+      <h1>This is a vertical accordion menu only HTML and CSS</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum itaque quae eos natus est asperiores consectetur sit, deserunt saepe totam tenetur numquam dicta harum distinctio accusamus, sed minima reiciendis expedita in. Sint, numquam recusandae id repellendus delectus porro, ipsa a harum obcaecati blanditiis cum accusantium optio voluptate dicta voluptatum. Ipsa nobis aliquid accusantium illum aliquam impedit! Sunt est aliquid ipsam sequi vel repudiandae minima alias earum facere nisi nostrum voluptatum tenetur, iusto illo harum aliquam reprehenderit porro molestias quas possimus voluptatem, doloribus, maiores ea ullam. Sint accusamus vel adipisci delectus nesciunt inventore, exercitationem saepe nulla, dignissimos cum amet consectetur odit voluptas. Laudantium corrupti modi laboriosam aspernatur sed veniam alias hic distinctio, fuga ullam incidunt blanditiis magnam recusandae numquam neque amet enim ratione! Qui numquam obcaecati quas nobis neque. Magni, autem, optio. Esse iste aut quam corrupti qui laboriosam molestias quisquam totam, non consequuntur mollitia maiores itaque et amet nisi voluptatem voluptatum sed dolorem, expedita nam aliquam. Voluptatum quisquam odio ea ullam esse exercitationem ipsum recusandae. Numquam recusandae ex ullam at nobis soluta voluptatum! Ipsum et, ipsam explicabo! Aliquid beatae commodi sint voluptatibus laborum facilis vitae, quaerat, suscipit dolore deserunt alias totam eaque blanditiis rerum, dolor voluptates itaque perferendis repudiandae similique?</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum itaque quae eos natus est asperiores consectetur sit, deserunt saepe totam tenetur numquam dicta harum distinctio accusamus, sed minima reiciendis expedita in. Sint, numquam recusandae id repellendus delectus porro, ipsa a harum obcaecati blanditiis cum accusantium optio voluptate dicta voluptatum. Ipsa nobis aliquid accusantium illum aliquam impedit! Sunt est aliquid ipsam sequi vel repudiandae minima alias earum facere nisi nostrum voluptatum tenetur, iusto illo harum aliquam reprehenderit porro molestias quas possimus voluptatem, doloribus, maiores ea ullam. Sint accusamus vel adipisci delectus nesciunt inventore, exercitationem saepe nulla, dignissimos cum amet consectetur odit voluptas. Laudantium corrupti modi laboriosam aspernatur sed veniam alias hic distinctio, fuga ullam incidunt blanditiis magnam recusandae numquam neque amet enim ratione! Qui numquam obcaecati quas nobis neque. Magni, autem, optio. Esse iste aut quam corrupti qui laboriosam molestias quisquam totam, non consequuntur mollitia maiores itaque et amet nisi voluptatem voluptatum sed dolorem, expedita nam aliquam. Voluptatum quisquam odio ea ullam esse exercitationem ipsum recusandae. Numquam recusandae ex ullam at nobis soluta voluptatum! Ipsum et, ipsam explicabo! Aliquid beatae commodi sint voluptatibus laborum facilis vitae, quaerat, suscipit dolore deserunt alias totam eaque blanditiis rerum, dolor voluptates itaque perferendis repudiandae similique?</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum itaque quae eos natus est asperiores consectetur sit, deserunt saepe totam tenetur numquam dicta harum distinctio accusamus, sed minima reiciendis expedita in. Sint, numquam recusandae id repellendus delectus porro, ipsa a harum obcaecati blanditiis cum accusantium optio voluptate dicta voluptatum. Ipsa nobis aliquid accusantium illum aliquam impedit! Sunt est aliquid ipsam sequi vel repudiandae minima alias earum facere nisi nostrum voluptatum tenetur, iusto illo harum aliquam reprehenderit porro molestias quas possimus voluptatem, doloribus, maiores ea ullam. Sint accusamus vel adipisci delectus nesciunt inventore, exercitationem saepe nulla, dignissimos cum amet consectetur odit voluptas. Laudantium corrupti modi laboriosam aspernatur sed veniam alias hic distinctio, fuga ullam incidunt blanditiis magnam recusandae numquam neque amet enim ratione! Qui numquam obcaecati quas nobis neque. Magni, autem, optio. Esse iste aut quam corrupti qui laboriosam molestias quisquam totam, non consequuntur mollitia maiores itaque et amet nisi voluptatem voluptatum sed dolorem, expedita nam aliquam. Voluptatum quisquam odio ea ullam esse exercitationem ipsum recusandae. Numquam recusandae ex ullam at nobis soluta voluptatum! Ipsum et, ipsam explicabo! Aliquid beatae commodi sint voluptatibus laborum facilis vitae, quaerat, suscipit dolore deserunt alias totam eaque blanditiis rerum, dolor voluptates itaque perferendis repudiandae similique?</p>
+    </main>
+    <div class="login-bar">
+      <a href="/auth/form.html">로그인</a>
+    </div>
+  </div>
+<script>
+ 
+</script>
+</body>
+</html>
+
+
+
+
+
+

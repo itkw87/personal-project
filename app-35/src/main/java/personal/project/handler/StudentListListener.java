@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import java.util.Iterator;
 import java.util.List;

@@ -1,6 +1,6 @@
 package personal.project;
 
-import personal.project.handler.StudentHandler;
+import personal.project.controller.StudentHandler;
 import personal.util.Prompt;
 
 public class App {

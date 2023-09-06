@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import personal.project.dao.MemberDao;
 import personal.project.vo.Member;

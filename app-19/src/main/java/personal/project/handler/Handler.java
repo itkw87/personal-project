@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 // 핸들러 사용 규칙
 // => 즉 메서드 호출 규칙을 정의

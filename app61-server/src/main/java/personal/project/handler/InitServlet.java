@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;

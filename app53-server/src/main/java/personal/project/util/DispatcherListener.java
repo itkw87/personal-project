@@ -10,17 +10,17 @@ import personal.project.dao.BoardDao;
 import personal.project.dao.MemberDao;
 import personal.project.dao.MySQLBoardDao;
 import personal.project.dao.MySQLMemberDao;
-import personal.project.handler.BoardAddListener;
-import personal.project.handler.BoardDeleteListener;
-import personal.project.handler.BoardDetailListener;
-import personal.project.handler.BoardListListener;
-import personal.project.handler.BoardUpdateListener;
-import personal.project.handler.LoginListener;
-import personal.project.handler.MemberAddListener;
-import personal.project.handler.MemberDeleteListener;
-import personal.project.handler.MemberDetailListener;
-import personal.project.handler.MemberListListener;
-import personal.project.handler.MemberUpdateListener;
+import personal.project.controller.BoardAddListener;
+import personal.project.controller.BoardDeleteListener;
+import personal.project.controller.BoardDetailListener;
+import personal.project.controller.BoardListListener;
+import personal.project.controller.BoardUpdateListener;
+import personal.project.controller.LoginListener;
+import personal.project.controller.MemberAddListener;
+import personal.project.controller.MemberDeleteListener;
+import personal.project.controller.MemberDetailListener;
+import personal.project.controller.MemberListListener;
+import personal.project.controller.MemberUpdateListener;
 
 public class DispatcherListener implements ActionListener {
   private final int BOARD = 1;

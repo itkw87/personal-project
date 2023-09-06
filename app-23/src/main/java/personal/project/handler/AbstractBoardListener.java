@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import personal.project.vo.Board;
 import personal.util.ActionListener;

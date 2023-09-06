@@ -1,6 +1,6 @@
 package personal.project;
 
-import personal.project.handler.MemberHandler;
+import personal.project.controller.MemberHandler;
 import personal.util.Prompt;
 
 public class App {

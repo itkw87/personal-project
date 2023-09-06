@@ -3,7 +3,7 @@ package personal.project.listener;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 import javax.servlet.annotation.WebListener;
-import personal.project.handler.InitServlet;
+import personal.project.controller.InitServlet;
 import personal.project.util.SqlSessionFactoryProxy;
 
 // 요청이나 응답을 수행했을 때 서블릿 컨테이너로부터 알림을 받는 옵저버 객체

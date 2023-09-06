@@ -1,9 +1,9 @@
 package personal.project;
 
 
-import personal.project.handler.BoardHandler;
-import personal.project.handler.Handler;
-import personal.project.handler.StudentHandler;
+import personal.project.controller.BoardHandler;
+import personal.project.controller.Handler;
+import personal.project.controller.StudentHandler;
 import personal.util.Prompt;
 
 public class App {

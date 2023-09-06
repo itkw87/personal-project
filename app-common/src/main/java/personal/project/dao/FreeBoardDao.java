@@ -23,4 +23,6 @@ public interface FreeBoardDao {
   AttachedFile findFileBy(int fileNo);
 
   int deleteFile(int fileNo);
+
+  int deleteFiles(int freeBoardNo);
 }

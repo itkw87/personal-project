@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import personal.project.vo.AttachedFile;
 import personal.project.vo.FreeBoard;

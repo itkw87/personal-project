@@ -1,4 +1,4 @@
-package personal.project.handler;
+package personal.project.controller;
 
 import java.io.PrintWriter;
 import personal.project.util.Component;

@@ -1,5 +1,30 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## 0.67. 페이지 컨트롤러 -> Plain Old Java Object로 전환하기
+- app66-server -> app67-server
+- 업데이트 사항
+  - 추가한 라이브러리
+    - 없음.
+  - 객체 추가 및 변경
+    - Member(회원)와 FreeBoard(자유게시판) 도메인에 해당하는 요청을 처리하는 모든 PageController의 코드를 기존의 Servlet을 이용한 코드에서 Java로 작성한 코드로 변경함.
+  - 기능 추가 및 변경
+    - 기능은 이전과 동일
+
+
+
+## 0.66. DispatcherServlet (Front Controller 디자인 패턴) 적용
+  - app65-server -> app66-server
+- 업데이트 사항
+  - 추가한 라이브러리
+    - 없음.
+  - 객체 추가 및 변경
+    - 클라이언트로부터 받는 모든 요청을 받아 해당 요청을 처리하는 각각의 Controller(Servlet)에게 전달해주는 역할을 할 DispatcherServlet(FrontController패턴 ≒ Facade패턴)  클래스를 선언하여 사용함.
+    - Member(회원)와 FreeBoard(자유게시판) 도메인에서 클라이언트로 부터 받은 요청을 각각의 Controller가 직접 전달 받지 않고 FrontController를 통해 전달받도록 처리
+    - 각각의 요청을 전달받은 Controller들이 요청을 처리한 결과를 Controller에서 바로 응답하지 않고 DispatcherServlet에서 Controller에서 처리한 결과를 반영하여 응답할 수 있도록 처리
+  - 기능 추가 및 변경
+    - 기능은 이전과 동일하나 요청과 응답에 대한 구조만 변경
+
+
 ## 0.65. JSP를 이용하여 MVC 모델2 구조로 변경하기
 - 업데이트 프로젝트 Directory
   - app64-server -> app65-server
