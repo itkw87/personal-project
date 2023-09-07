@@ -10,7 +10,7 @@
 
 <jsp:useBean id="freeBoardDao" type="personal.project.dao.FreeBoardDao" scope="application"/>
 <jsp:useBean id="sqlSessionFactory" type="org.apache.ibatis.session.SqlSessionFactory" scope="application"/>
-<jsp:useBean id="ncpObjectStorageService" type="personal.util.NcpObjectStorageService" scope="application"/>
+<jsp:useBean id="ncpObjectStorageService" type="personal.project.service.NcpObjectStorageService" scope="application"/>
 <jsp:useBean id="loginUser" class="personal.project.vo.Member" scope="session"/>
 <%
     if (loginUser.getMemberNo() == 0) {

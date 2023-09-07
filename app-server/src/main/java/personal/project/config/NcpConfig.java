@@ -1,4 +1,4 @@
-package personal.util;
+package personal.project.config;
 
 public class NcpConfig {
   private String endPoint = "https://kr.object.ncloudstorage.com";

@@ -1,5 +1,19 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## Spring Ioc 컨테이너를 이용하여 페이지 컨트롤러를 관리하기
+- app67-server -> app68-server
+- 업데이트 사항
+  - 추가한 라이브러리
+    - org.springframework:spring-context:6.0.11
+  - 객체 추가 및 변경
+    - DispatcherServlet의 기능을 강화하여 앱 실행시 .class설정파일을 기준으로 WebApplicationContext(IoC Container)를 생성하여 그곳에 Bean들을 생성하고 등록 및 관리
+    - 트랜잭션시 필요한 SqlSessionFactory(의존객체)를 의존주입하여 사용
+    - 클라이언트로부터 요청이 들어올 때 마다 해당 요청을 처리하는 페이지 컨트롤러 객체를 Ioc Container에서 꺼내서 사용
+  - 기능 추가 및 변경
+    - 기능은 이전과 동일
+
+
+
 ## 0.67. 페이지 컨트롤러 -> Plain Old Java Object로 전환하기
 - app66-server -> app67-server
 - 업데이트 사항
@@ -9,7 +23,6 @@
     - Member(회원)와 FreeBoard(자유게시판) 도메인에 해당하는 요청을 처리하는 모든 PageController의 코드를 기존의 Servlet을 이용한 코드에서 Java로 작성한 코드로 변경함.
   - 기능 추가 및 변경
     - 기능은 이전과 동일
-
 
 
 ## 0.66. DispatcherServlet (Front Controller 디자인 패턴) 적용

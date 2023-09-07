@@ -1,4 +1,4 @@
-package personal.util;
+package personal.project.service;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -8,12 +8,15 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import org.springframework.stereotype.Component;
 import personal.project.vo.AttachedFile;
+import personal.project.config.NcpConfig;
 
 import javax.servlet.http.Part;
 import java.io.InputStream;
 import java.util.UUID;
 
+@Component
 public class NcpObjectStorageService {
   final AmazonS3 s3;
 

@@ -8,7 +8,7 @@
 
 <jsp:useBean id="memberDao" type="personal.project.dao.MemberDao" scope="application"/>
 <jsp:useBean id="sqlSessionFactory" type="org.apache.ibatis.session.SqlSessionFactory" scope="application"/>
-<jsp:useBean id="ncpObjectStorageService" type="personal.util.NcpObjectStorageService" scope="application"/>
+<jsp:useBean id="ncpObjectStorageService" type="personal.project.service.NcpObjectStorageService" scope="application"/>
 <%
     request.setAttribute("refresh", "2;url=list.jsp");
 
