@@ -1,6 +1,6 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
-## MyBatis와 Spring IoC 컨테이너 사용하여 DAO 객체 자동 생성적용
+## 0.69v. MyBatis와 Spring IoC 컨테이너 사용하여 DAO 객체 자동 생성적용
 
 - 업데이트 사항
   - [app68-common -> app69-common]
@@ -19,7 +19,7 @@
       - Mybatis의 Log4j기능 적용하기(활성화하기)
 
 
-## Spring Ioc 컨테이너를 이용하여 페이지 컨트롤러를 관리하기
+## 0.68v. Spring Ioc 컨테이너를 이용하여 페이지 컨트롤러를 관리하기
 - app67-server -> app68-server
 - 업데이트 사항
   - 추가한 라이브러리
@@ -32,7 +32,7 @@
     - 기능은 이전과 동일
 
 
-## 0.67. 페이지 컨트롤러 -> Plain Old Java Object로 전환하기
+## 0.67v. 페이지 컨트롤러 -> Plain Old Java Object로 전환하기
 - app66-server -> app67-server
 - 업데이트 사항
   - 추가한 라이브러리
@@ -43,7 +43,7 @@
     - 기능은 이전과 동일
 
 
-## 0.66. DispatcherServlet (Front Controller 디자인 패턴) 적용
+## 0.66v. DispatcherServlet (Front Controller 디자인 패턴) 적용
   - app65-server -> app66-server
 - 업데이트 사항
   - 추가한 라이브러리
@@ -56,7 +56,7 @@
     - 기능은 이전과 동일하나 요청과 응답에 대한 구조만 변경
 
 
-## 0.65. JSP를 이용하여 MVC 모델2 구조로 변경하기
+## 0.65v. JSP를 이용하여 MVC 모델2 구조로 변경하기
 - 업데이트 프로젝트 Directory
   - app64-server -> app65-server
 - 업데이트 사항
