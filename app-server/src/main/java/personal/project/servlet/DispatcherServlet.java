@@ -1,6 +1,5 @@
 package personal.project.servlet;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import personal.project.config.AppConfig;
 import personal.project.config.NcpConfig;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 // DispatcherServlet 클래스는 FrontController로 모든 요청을 받아 각각의 Controller에게 전달하는 역할을 한다.
-@WebServlet("/app/*")
+@WebServlet(value = "/app/*")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 public class DispatcherServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
@@ -27,11 +26,7 @@ public class DispatcherServlet extends HttpServlet {
   public void init() throws ServletException {
     System.out.println("DispatcherServlet.init() 호출됨!");
     iocContainer = new AnnotationConfigApplicationContext(AppConfig.class, NcpConfig.class);
-
-    SqlSessionFactory sqlSessionFactory = iocContainer.getBean(SqlSessionFactory.class);
-    this.getServletContext().setAttribute("sqlSessionFactory", sqlSessionFactory);
   }
-
 
   @Override
   protected void service(HttpServletRequest request, HttpServletResponse response)

@@ -1,5 +1,24 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## MyBatis와 Spring IoC 컨테이너 사용하여 DAO 객체 자동 생성적용
+
+- 업데이트 사항
+  - [app68-common -> app69-common]
+    - 추가한 라이브러리
+      - implementation 'org.mybatis:mybatis:3.5.13'(Mybatis 라이브러리)
+      - implementation 'org.mybatis:mybatis-spring:3.0.2'(Mybatis의 Spring 연동 라이브러리)
+  - [app68-server -> app69-server]
+    - 추가한 라이브러리
+      - implementation 'org.springframework:spring-jdbc:6.0.11'(Spring JDBC 라이브러리)
+      - implementation 'org.mybatis:mybatis-spring:3.0.2'(Mybatis의 Spring 연동 라이브러리)
+      - implementation 'org.apache.logging.log4j:log4j-core:2.20.0'(Log4j 2.x 라이브러리)
+    - 객체 추가 및 변경
+      - Dao 구현체 삭제
+        - Dao인터페이스를 직접구현하지 않고 Mybatis와 Spring IoC 컨테이너를 이용하여 Dao 구현체를 자동으로 구현하여 생성하게 함.
+    - 기능 추가 및 변경
+      - Mybatis의 Log4j기능 적용하기(활성화하기)
+
+
 ## Spring Ioc 컨테이너를 이용하여 페이지 컨트롤러를 관리하기
 - app67-server -> app68-server
 - 업데이트 사항
@@ -11,7 +30,6 @@
     - 클라이언트로부터 요청이 들어올 때 마다 해당 요청을 처리하는 페이지 컨트롤러 객체를 Ioc Container에서 꺼내서 사용
   - 기능 추가 및 변경
     - 기능은 이전과 동일
-
 
 
 ## 0.67. 페이지 컨트롤러 -> Plain Old Java Object로 전환하기
