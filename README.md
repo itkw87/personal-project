@@ -1,7 +1,34 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
-## 0.69v. MyBatis와 Spring IoC 컨테이너 사용하여 DAO 객체 자동 생성적용
+## 0.71v. 트랜잭션 제어 코드를 캡슐화하기: Spring의 TransactionTemplate 모방 구현
+- 업데이트 사항
+  - [app70-server -> app71-server]
+    - 추가한 라이브러리
+      - 없음.
+    - 객체 추가 및 변경
+      - Spring의 TransactionTemplate 클래스를 모방하여 TransactionCallBack 인터페이스와 
+        TransactionTemplate 클래스를 직접 구현하여 반복적인 트랜잭션 제어 코드 캡슐화 
+    - 기능 추가 및 변경
+      - 기능은 이전과 같음.
 
+
+## 0.70v. Controller에서 비즈니스 로직을 분리하기 
+- 업데이트 사항
+  - [app69-common -> app70-common]
+    - 없음.
+    - 객체 추가 및 변경
+      - DAO 인터페이스 파라미터 및 반환 타입 수정
+  - [app69-server -> app70-server]
+    - 추가한 라이브러리
+      - 없음.
+    - 객체 추가 및 변경
+      - 비즈니스 로직을 기존의 Controller에서 Service로 분리하여 코드의 유연성을 높임.
+      - personal/project/service 패키지 생성 후 Service 인터페이스와 그 구현체 구현함.
+    - 기능 추가 및 변경
+      - 기능은 이전과 같음.
+
+
+## 0.69v. MyBatis와 Spring IoC 컨테이너 사용하여 DAO 객체 자동 생성적용
 - 업데이트 사항
   - [app68-common -> app69-common]
     - 추가한 라이브러리
