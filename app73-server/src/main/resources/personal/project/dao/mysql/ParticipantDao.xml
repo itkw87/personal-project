@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="personal.project.dao.ParticipantDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="participant" id="participantMap">
+    <id column="lecture_no"       property="lectureNo"/>
+    <id column="member_no"          property="memberNo"/>
+    <result column="parti_type_no"        property="partiTypeNo"/>
+    <result column="parti_status"     property="partiStatus"/>
+  </resultMap>
+
+  <select id="findAllParticipant" parameterType="member" resultMap="participantMap">
+    select
+      p.lecture_no
+      ,p.member_no
+      ,p.parti_type_no
+      ,p.parti_status
+    from personaldb.task_member m
+         left outer join task_participant p
+                   on m.member_no = p.member_no
+    where m.member_id = #{memberId}
+      and m.member_pwd=sha1(#{memberPwd})
+  </select>
+
+</mapper>
+
+
+
+
+

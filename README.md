@@ -1,5 +1,19 @@
 # 개인 프로젝트 - 과제 제출 Web Service
 
+## 0.73v. 애노테이션과 프록시 패턴을 사용하여 트랜잭션 제어
+- 업데이트 사항
+  - [app72-server -> app73-server]
+    - 추가한 라이브러리
+      - 없음.
+    - 객체 추가 및 변경
+      - personal.util 패키지에 Transactional어노테이션과 TransactionProxyBuilder클래스 추가
+      - 앱 실행시 서비스 객체 + 트랜잭션 다루는 기능을 하는 Member와 FreeBoard의 Service구현체 생성
+      - 프록시 객체를 사용하여 Dao 구현체의 메서드 중 Transactional애노테이션이 붙은 메서드 수행시에만
+        트랜잭션 관련한 처리 적용하도록 코드 구현
+    - 기능 추가 및 변경
+      - 사용자 기능은 이전과 같음.
+
+
 ## 0.72v. 모방 구현한 TransactionTemplate -> Spring에서 제공하는 TransactionTemplate으로 교체
 - 업데이트 사항
   - [app71-server -> app72-server]
@@ -8,7 +22,7 @@
     - 객체 추가 및 변경
       - personal.util 패키지 아래의 TransactionCallBack인터페이스와 TransactionTemplate클래스 삭제 후 Spring에서 제공하는 TransactionTemplate로 변경
     - 기능 추가 및 변경
-      - 기능은 이전과 같음.
+      - 사용자 기능은 이전과 같음.
 
 ## 0.71v. 트랜잭션 제어 코드를 캡슐화하기: Spring의 TransactionTemplate 모방 구현
 - 업데이트 사항
@@ -19,7 +33,7 @@
       - Spring의 TransactionTemplate 클래스를 모방하여 TransactionCallBack 인터페이스와 
         TransactionTemplate 클래스를 직접 구현하여 반복적인 트랜잭션 제어 코드 캡슐화 
     - 기능 추가 및 변경
-      - 기능은 이전과 같음.
+      - 사용자 기능은 이전과 같음.
 
 
 ## 0.70v. Controller에서 비즈니스 로직을 분리하기 
@@ -35,7 +49,7 @@
       - 비즈니스 로직을 기존의 Controller에서 Service로 분리하여 코드의 유연성을 높임.
       - personal.project.service 패키지 생성 후 Service 인터페이스와 그 구현체 구현함.
     - 기능 추가 및 변경
-      - 기능은 이전과 같음.
+      - 사용자 기능은 이전과 같음.
 
 
 ## 0.69v. MyBatis와 Spring IoC 컨테이너 사용하여 DAO 객체 자동 생성적용
