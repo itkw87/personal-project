@@ -183,17 +183,6 @@
     - 기능 추가 및 변경
       - 기존에 로컬에 보관하던 자유게시글의 첨부파일을 NaverColoudStorage에 보관하게 변경
 
-
-## 0.59v. 서블릿 컨테이너 삽입 (Embedded Tomcat 간단하게 구현)
-- 업데이트 프로젝트 Directory
-  - app58-server -> app59-server
-- 업데이트 사항
-    - 객체 추가 및 변경
-      - 없음.
-    - 기능 추가 및 변경
-      - personal.project.App 클래스에 Embedded Tomcat 코드 작성
-
-
 ## 0.59v. 서블릿 컨테이너 삽입 (Embedded Tomcat 간단하게 구현)
 - 업데이트 프로젝트 Directory
   - app58-server -> app59-server
